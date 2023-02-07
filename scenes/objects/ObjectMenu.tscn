@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://obxs5t3bfvd5"]
+
+[ext_resource type="Script" path="res://scenes/objects/ObjectMenu.gd" id="1_54o23"]
+[ext_resource type="PackedScene" uid="uid://c6qljb7bk4rtb" path="res://scenes/objects/ObjectMenuActionButton.tscn" id="2_y4ka5"]
+
+[node name="ObjectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -233.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_54o23")
+
+[node name="ObjectMenuActionButton" parent="." instance=ExtResource("2_y4ka5")]
+layout_mode = 1
+offset_left = -43.0
+offset_top = -31.0
+offset_right = -36.0
+offset_bottom = -26.0
+
+[node name="ObjectMenuActionButton2" parent="." instance=ExtResource("2_y4ka5")]
+layout_mode = 1
+offset_left = -5.0
+offset_top = -46.0
+offset_right = 2.0
+offset_bottom = -41.0
+
+[node name="ObjectMenuActionButton3" parent="." instance=ExtResource("2_y4ka5")]
+layout_mode = 1
+offset_left = 35.0
+offset_top = -30.0
+offset_right = 42.0
+offset_bottom = -25.0

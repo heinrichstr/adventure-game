@@ -6,7 +6,7 @@ signal click_on_space(target)
 func _ready():
 	connect("click_on_space", Actions._on_click_on_space)
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed('click'):
 		#TODO: check if click on UI or object
 		target = get_global_mouse_position()

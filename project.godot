@@ -22,8 +22,8 @@ Actions="*res://scenes/Actions.tscn"
 
 [display]
 
-window/size/viewport_width=256
-window/size/viewport_height=224
+window/size/viewport_width=800
+window/size/viewport_height=600
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
