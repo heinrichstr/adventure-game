@@ -1,14 +1,21 @@
-extends Node
+extends Node2D
 
+@onready var default_2d_map_rid : RID = get_world_2d().get_navigation_map()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
-func _on_click_on_space(target):
-	prints('signal detect, space clicked ', target)
+# called when user clicks on the screen to move the character
+# creates an array of Vector2() paths navigating with the navmesh of the Space
+# setting the target on the player causes the player to move
+func _on_click_on_space(target, _from_node): #Space node emit
+	References.player.path = NavigationServer2D.map_get_path(
+		default_2d_map_rid,
+		References.player.position,
+		target,
+		true
+	)
+	References.player.target = References.player.path[0]
