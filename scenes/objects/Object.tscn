@@ -31,25 +31,24 @@ shape = SubResource("CircleShape2D_i4m1x")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -26.0
-offset_top = -26.0
+offset_left = -10.0
+offset_top = -9.0
 offset_right = 10.0
 offset_bottom = 10.0
 mouse_filter = 2
 
 [node name="ObjectMenu" parent="Control" instance=ExtResource("3_6dn6v")]
 layout_mode = 1
-offset_left = 8.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 3.0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 10.0
+offset_bottom = 9.0
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 18.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = 1.0
+offset_right = 20.0
+offset_bottom = 18.0
 
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]
