@@ -34,3 +34,11 @@ func _on_object_menu_toggle(toggleState, object_menu, _from_node): #Object node 
 			object_menu.hide_menu() #replace with tween
 		else:
 			object_menu.show_menu() #replace with tween
+
+
+func _on_examine(_from_node): #References node emit from object menu click
+	prints("examine ", _from_node)
+
+
+func _on_forage(_from_node): #References node emit from object menu click
+	prints("forage ", _from_node)

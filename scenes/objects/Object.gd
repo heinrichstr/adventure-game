@@ -1,10 +1,14 @@
 extends Node2D
 
 var toggleState = false
+var actions = [References.actions.examine, References.actions.forage, References.actions.examine]
 signal object_menu_toggle(toggleState, objectMenu, fromNode)
 
 
 func _ready():
+	$Control/ObjectMenu.actions = actions
+	$Control/ObjectMenu.build_menu()
+	$Control/ObjectMenu.place_buttons()
 	connect("object_menu_toggle", Actions._on_object_menu_toggle)
 
 

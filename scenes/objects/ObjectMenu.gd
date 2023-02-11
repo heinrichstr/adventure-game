@@ -3,12 +3,14 @@ extends Control
 #TODO: Package the button scene to dynamically add it based on what the object sets for actions
 	#get scale under control I can't read shit in these button labels
 	
+var actions
+
+const ObjectMenuActionButton = preload("res://scenes/objects/ObjectMenuActionButton.tscn")
 
 var button_radius = 40 #in godot position units
 var radial_width = 40 #in godot position units
 
 func _ready():
-	place_buttons()
 	self.scale = Vector2(0,0)
 	self.modulate = Color(1, 1, 1, 0)
 	hide()
@@ -28,6 +30,20 @@ func hide_menu():
 	hide()
 
 
+func build_menu():
+	#get number of actions
+	print(actions.size())
+	for action in actions:
+		prints("action: ", action)
+		#create child node from ObjectMenuActionButton
+		var ButtonInstance = ObjectMenuActionButton.instantiate()
+		#assign that node the info it needs (desc, the signal to emit)
+		ButtonInstance.set_text(action.desc)
+		ButtonInstance.emitter = action.signal_call
+		#add it to the ObjectMenu
+		self.add_child(ButtonInstance)
+
+
 #Repositions the buttons
 func place_buttons():
 	var buttons = get_children()
@@ -42,10 +58,7 @@ func place_buttons():
 	#adjust the starting point so the menu is centered over the object
 	var angle = PI/2 - angle_offset * (buttons.size()/2) #in radians
 	
-	var count = 0
 	for btn in buttons: 
-		btn.find_child("RichTextLabel").text = str(count)
-		count += 1
 		#calculate the x and y positions for the button at that angle
 			#add half the size of the menu to center on the menu
 		var x = cos(angle)*button_radius + self.size.x/2

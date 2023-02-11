@@ -1,5 +1,6 @@
 extends TextureButton
 
+var emitter = func(): pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,4 +13,9 @@ func _process(delta):
 
 
 func _on_pressed():
-	pass # Replace with function body.
+	emitter.call(self)
+
+
+func set_text(text):
+	#$RichTextLabel.bbcode_text = "[center]" + text + "[/center]"
+	tooltip_text = text

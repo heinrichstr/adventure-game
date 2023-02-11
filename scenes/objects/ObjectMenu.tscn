@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://obxs5t3bfvd5"]
+[gd_scene load_steps=2 format=3 uid="uid://obxs5t3bfvd5"]
 
 [ext_resource type="Script" path="res://scenes/objects/ObjectMenu.gd" id="1_54o23"]
-[ext_resource type="PackedScene" uid="uid://c6qljb7bk4rtb" path="res://scenes/objects/ObjectMenuActionButton.tscn" id="2_y4ka5"]
 
 [node name="ObjectMenu" type="Container"]
 anchors_preset = 15
@@ -14,12 +13,3 @@ offset_bottom = -549.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_54o23")
-
-[node name="ObjectMenuActionButton" parent="." instance=ExtResource("2_y4ka5")]
-layout_mode = 2
-
-[node name="ObjectMenuActionButton2" parent="." instance=ExtResource("2_y4ka5")]
-layout_mode = 2
-
-[node name="ObjectMenuActionButton3" parent="." instance=ExtResource("2_y4ka5")]
-layout_mode = 2
