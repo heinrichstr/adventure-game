@@ -1,7 +1,11 @@
 extends Control
 
-var button_radius = 30 #in godot position units
-var radial_width = 20 #in godot position units
+#TODO: Package the button scene to dynamically add it based on what the object sets for actions
+	#get scale under control I can't read shit in these button labels
+	
+
+var button_radius = 40 #in godot position units
+var radial_width = 40 #in godot position units
 
 func _ready():
 	place_buttons()
@@ -10,7 +14,6 @@ func _ready():
 	hide()
 
 func show_menu():
-	print('show')
 	show()
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
 	tw.tween_property(self, "scale", Vector2(1,1), 0.25)
@@ -18,7 +21,6 @@ func show_menu():
 
 
 func hide_menu():
-	print('hide')
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
 	tw.tween_property(self, "scale", Vector2(0,0), 0.25)
 	tw.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.25)
@@ -35,7 +37,7 @@ func place_buttons():
 		return
 
 	#Amount to change the angle for each button
-	var angle_offset = (0.7 * PI)/buttons.size() #in degrees
+	var angle_offset = (2 * PI)/buttons.size() #in degrees
 
 	#adjust the starting point so the menu is centered over the object
 	var angle = PI/2 - angle_offset * (buttons.size()/2) #in radians
@@ -45,8 +47,9 @@ func place_buttons():
 		btn.find_child("RichTextLabel").text = str(count)
 		count += 1
 		#calculate the x and y positions for the button at that angle
-		var x = cos(angle)*button_radius
-		var y = sin(angle)*button_radius
+			#add half the size of the menu to center on the menu
+		var x = cos(angle)*button_radius + self.size.x/2
+		var y = (sin(angle)*button_radius + self.size.y/2)/4 + 30 #/2 to flatten out the circle, add a flat amount to make up the difference the flattening causes
 
 		#set button's position
 		#>we want to center the element on the circle. 

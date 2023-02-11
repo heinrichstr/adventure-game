@@ -10,3 +10,4 @@ script = ExtResource("1_l5du5")
 [node name="World" parent="." instance=ExtResource("1_uwrk0")]
 
 [node name="Gui" parent="." instance=ExtResource("2_tpfow")]
+metadata/_edit_lock_ = true
