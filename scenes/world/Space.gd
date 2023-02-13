@@ -8,6 +8,6 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed('click'):
-		#TODO: check if click on UI or object
-		target = get_global_mouse_position()
-		emit_signal("click_on_space", target, self)
+		if References.dialog.in_progress == false:
+			target = get_global_mouse_position()
+			emit_signal("click_on_space", target, self)

@@ -29,16 +29,23 @@ func _on_click_on_space(target, _from_node): #Space node emit
 func _on_object_menu_toggle(toggleState, object_menu, _from_node): #Object node emit
 #called when user clicks on an object
 #shows or hides the menu
-	if (playerInput == true):
-		if(toggleState):
-			object_menu.hide_menu() #replace with tween
-		else:
-			object_menu.show_menu() #replace with tween
+	if References.dialog.in_progress == false:
+		if (playerInput == true):
+			if(toggleState):
+				object_menu.hide_menu() #replace with tween
+			else:
+				object_menu.show_menu() #replace with tween
 
 
-func _on_examine(_from_node): #References node emit from object menu click
-	prints("examine ", _from_node)
+func _on_examine(object_menu_btn): #References node emit from object menu click
+	prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description)
+	object_menu_btn.object_node.toggleState = !object_menu_btn.object_node.toggleState
+	object_menu_btn.get_parent().hide_menu()
+	#pass dialog text array to dialogbox and tell it to start
+	References.dialog.start_dialog(object_menu_btn.object_node.description, 0)
 
-
-func _on_forage(_from_node): #References node emit from object menu click
-	prints("forage ", _from_node)
+func _on_forage(object_menu_btn): #References node emit from object menu click
+	prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description)
+	object_menu_btn.object_node.toggleState = !object_menu_btn.object_node.toggleState
+	object_menu_btn.get_parent().hide_menu()
+	

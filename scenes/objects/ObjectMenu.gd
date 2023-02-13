@@ -4,7 +4,7 @@ extends Control
 	#get scale under control I can't read shit in these button labels
 	
 var actions
-
+@onready var object_node = get_parent().get_parent()
 const ObjectMenuActionButton = preload("res://scenes/objects/ObjectMenuActionButton.tscn")
 
 var button_radius = 40 #in godot position units
@@ -40,6 +40,7 @@ func build_menu():
 		#assign that node the info it needs (desc, the signal to emit)
 		ButtonInstance.set_text(action.desc)
 		ButtonInstance.emitter = action.signal_call
+		ButtonInstance.buttonType = action.desc
 		#add it to the ObjectMenu
 		self.add_child(ButtonInstance)
 

@@ -1,6 +1,8 @@
 extends TextureButton
 
 var emitter = func(): pass
+var buttonType
+@onready var object_node = get_parent().object_node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

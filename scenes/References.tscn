@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://nd8qlcsxluwj"]
+[gd_scene load_steps=3 format=3 uid="uid://nd8qlcsxluwj"]
 
 [ext_resource type="Script" path="res://scenes/References.gd" id="1_1hk43"]
+[ext_resource type="Script" path="res://scenes/Dialog.gd" id="2_l23co"]
 
 [node name="References" type="Node"]
 script = ExtResource("1_1hk43")
+
+[node name="Dialog_Forest" type="Node" parent="."]
+script = ExtResource("2_l23co")

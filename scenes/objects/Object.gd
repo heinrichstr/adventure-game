@@ -1,7 +1,8 @@
 extends Node2D
 
 var toggleState = false
-var actions = [References.actions.examine, References.actions.forage, References.actions.examine]
+@onready var actions = [References.actions.examine, References.actions.forage, References.actions.examine]
+@onready var description = References.dialog.item_descriptions.stick
 signal object_menu_toggle(toggleState, objectMenu, fromNode)
 
 
@@ -13,8 +14,9 @@ func _ready():
 
 
 func _on_button_pressed():
-	emit_signal("object_menu_toggle", toggleState, $Control/ObjectMenu, self)
-	toggleState = !toggleState
+	if References.dialog.in_progress == false:
+		emit_signal("object_menu_toggle", toggleState, $Control/ObjectMenu, self)
+		toggleState = !toggleState
 
 
 func _on_button_mouse_entered():

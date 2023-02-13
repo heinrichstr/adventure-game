@@ -3,6 +3,7 @@ extends Node
 var world
 var player
 var space
+var dialog
 
 signal examine(_from_node)
 signal forage(_from_node)
