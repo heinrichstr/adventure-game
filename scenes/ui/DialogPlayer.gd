@@ -4,6 +4,7 @@ extends CanvasLayer
 var scene_text = []
 var text_key = 0
 var in_progress = false
+var writing_text = false
 
 func _ready():
 	$Background.visible = false
@@ -29,13 +30,25 @@ func display_dialog():
 
 
 func show_text():
+	writing_text = true
+	$DialogStatusIndicator.modulate = Color(1, 1, 1, 0)
 	$TextLabel.visible_ratio = 0
 	$TextLabel.text = scene_text[text_key]
 	var tw = create_tween().set_trans(0).set_ease(1)
 	tw.tween_property($TextLabel, "visible_ratio", 1, 1)
+	await tw.finished
+	writing_text = false
+	if text_key + 1 == scene_text.size():
+		$DialogStatusIndicator.play("complete")
+	else:
+		print("progress")
+		$DialogStatusIndicator.play("progress")
+	var indicatorTween = create_tween().set_trans(0).set_ease(1)
+	indicatorTween.tween_property($DialogStatusIndicator, "modulate", Color(1, 1, 1, 1), .15)
 
 
 func next_line():
+	$DialogStatusIndicator.modulate = Color(1, 1, 1, 0)
 	text_key += 1
 	if text_key >= scene_text.size():
 		finish()

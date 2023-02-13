@@ -10,14 +10,13 @@
 script = ExtResource("1_v6pds")
 
 [node name="Space" parent="." instance=ExtResource("1_k8i0t")]
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_m0u38")]
-position = Vector2(105, 37)
-metadata/_edit_lock_ = true
+position = Vector2(461, 91)
+scale = Vector2(2, 2)
 
 [node name="Object" parent="." instance=ExtResource("4_wvj06")]
-position = Vector2(243, 386)
-metadata/_edit_lock_ = true
+position = Vector2(1119, 212)
+scale = Vector2(2, 2)
 
 [node name="DialogPlayer" parent="." instance=ExtResource("5_wq3pd")]

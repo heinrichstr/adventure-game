@@ -1,33 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://dygmssoe8luh"]
 
 [ext_resource type="Script" path="res://scenes/world/Space.gd" id="1_0sflk"]
-[ext_resource type="Texture2D" uid="uid://bgigfk1dkwmfb" path="res://assets/sprites/mockup/kpTywm.jpg" id="1_3xc7h"]
+[ext_resource type="Texture2D" uid="uid://d2pk05yt35tsn" path="res://assets/sprites/world/meadow/mock meadow.png" id="2_i7306"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
-size = Vector2(800, 601)
+size = Vector2(1920, 1080)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_n5a2w"]
-vertices = PackedVector2Array(213, 99, 36, 0, 318, 6, 300, 162, 229, 211, 493, 458, 264, 606, 35, 462, 450, 221, 584, 323, 747, 294, 596, 82, 789, 109)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(0, 2, 3, 4), PackedInt32Array(5, 6, 7, 4, 3, 8, 9), PackedInt32Array(10, 9, 8, 11, 12)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(318, 6, 300, 162, 450, 221, 596, 82, 789, 109, 747, 294, 584, 323, 493, 458, 264, 606, 35, 462, 229, 211, 213, 99, 36, 0)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_om46g"]
+vertices = PackedVector2Array(1200, 760, 1440, 488, 1632, 440, 1384, 816, 1200, 928, 1680, 272, 1920, 120, 1936, 392, 1720, 376, 1280, 1088, 496, 1088, 504, 936, 896, 832, 1440, 408, 1448, 248, 416, 752, 128, 640, 320, 544, 128, 472, 432, 376, 616, 424, 0, 208, -8, 0, 696, -8, 688, 64, 312, 248, 840, 200, 1184, 368, 1072, 200)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(4, 9, 10, 11, 12), PackedInt32Array(2, 1, 13, 14, 5, 8), PackedInt32Array(12, 0, 4), PackedInt32Array(15, 12, 11), PackedInt32Array(15, 11, 16), PackedInt32Array(17, 15, 16, 18), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 22, 23, 24, 25), PackedInt32Array(20, 19, 25, 24, 26), PackedInt32Array(27, 20, 26, 28, 14), PackedInt32Array(13, 27, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 208, 312, 248, 432, 376, 128, 472, 128, 640, 504, 936, 496, 1088, 1280, 1088, 1200, 928, 1384, 816, 1632, 440, 1720, 376, 1936, 392, 1920, 120, 1680, 272, 1448, 248, 1072, 200, 840, 200, 688, 64, 696, -8, -8, 0), PackedVector2Array(320, 544, 616, 424, 1184, 368, 1440, 408, 1440, 488, 1200, 760, 896, 832, 416, 752)])
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_0sflk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.25, 1.67222)
-texture = ExtResource("1_3xc7h")
+scale = Vector2(6, 6)
+texture = ExtResource("2_i7306")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(400, 300.5)
+position = Vector2(960, 540)
 shape = SubResource("RectangleShape2D_gtvg3")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_n5a2w")
-metadata/_edit_lock_ = true
+navigation_polygon = SubResource("NavigationPolygon_om46g")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
