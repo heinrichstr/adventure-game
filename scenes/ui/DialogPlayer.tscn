@@ -5,9 +5,6 @@
 [ext_resource type="FontFile" uid="uid://dlcwuyt2vucmr" path="res://assets/fonts/alagard.ttf" id="3_fs6kp"]
 [ext_resource type="Texture2D" uid="uid://baljkblx7v73o" path="res://assets/sprites/ui/dialog-button.png" id="4_0easi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwx72"]
-size = Vector2(1920, 1080)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1dh4o"]
 atlas = ExtResource("4_0easi")
 region = Rect2(0, 0, 20, 20)
@@ -82,6 +79,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwx72"]
+size = Vector2(1920, 1080)
+
 [node name="DialogPlayer" type="CanvasLayer"]
 script = ExtResource("1_a01fv")
 
@@ -108,6 +108,13 @@ theme_override_font_sizes/font_size = 48
 autowrap_mode = 3
 visible_characters_behavior = 1
 
+[node name="DialogStatusIndicator" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1760, 928)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3r51c")
+animation = &"progress"
+
 [node name="Area2D" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -115,12 +122,5 @@ metadata/_edit_lock_ = true
 position = Vector2(960, 540)
 shape = SubResource("RectangleShape2D_pwx72")
 metadata/_edit_lock_ = true
-
-[node name="DialogStatusIndicator" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(1760, 928)
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_3r51c")
-animation = &"progress"
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
