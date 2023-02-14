@@ -6,7 +6,7 @@ var buttonType
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,7 +15,10 @@ func _process(delta):
 
 
 func _on_pressed():
-	emitter.call(self)
+	if buttonType == "FORAGE":
+		emitter.call(self, object_node.forage_key)
+	else: 
+		emitter.call(self)
 
 
 func set_text(text):

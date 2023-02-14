@@ -4,6 +4,7 @@ var world
 var player
 var space
 var dialog
+var forageOverlay
 
 signal examine(_from_node)
 signal forage(_from_node)
@@ -14,11 +15,17 @@ var actions = {
 		"desc": "EXAMINE"
 	}, 
 	"forage": {
-		"signal_call": func(_from_node): emit_signal("forage", _from_node),
-		"desc": "FORAGE"
-	}, 
-	
+		"signal_call": func(_from_node, forage_key): emit_signal("forage", _from_node,forage_key),
+		"desc": "FORAGE",
+		"forage_key": "meadow-1"
+	}
 }
+
+
+var forages = {
+	"meadow-1": "res://scenes/forage/meadow-1.tscn"
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
