@@ -5,6 +5,7 @@ var scene_text = []
 var text_key = 0
 var in_progress = false
 var writing_text = false
+var tw
 
 func _ready():
 	$Background.visible = false
@@ -43,14 +44,24 @@ func show_text():
 	$TextLabel.visible_ratio = 0
 	$TextLabel.text = scene_text[text_key]
 	
+	#set vertical position of text in box based on how many lines it needs
+	if scene_text[text_key].length() > 72:
+		$TextLabel.position.y = 848
+	else:
+		$TextLabel.position.y = 872
+	
 	#write the text to the dialog box
-	var tw = create_tween().set_trans(0).set_ease(1)
+	tw = create_tween().set_trans(0).set_ease(1)
 	tw.tween_property($TextLabel, "visible_ratio", 1, 1)
 	
 	#animate the indicator when text is finished writing to the screen
 	await tw.finished
 	writing_text = false
 	#decide which indicator to use
+	dialogIndicatorUpdate()
+
+
+func dialogIndicatorUpdate():
 	if text_key + 1 == scene_text.size():
 		$DialogStatusIndicator.play("complete")
 	else:
@@ -81,12 +92,20 @@ func finish():
 	$Background.visible = false
 	in_progress = false
 	$Area2D.hide()
-	get_tree().paused = false
+	$DialogStatusIndicator.modulate = Color(1, 1, 1, 0)
+	#get_tree().paused = false
 
 
 func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	#move the text forward if a click is registered to the screen
+	#if in dialog writing, cut to end of dialog
 	
 	if event.is_action_pressed('click'):
 		if References.dialog.in_progress:
-			References.dialog.display_dialog()
+			if writing_text:
+				tw.kill()
+				$TextLabel.visible_ratio = 1
+				writing_text = false
+				dialogIndicatorUpdate()
+			else:
+				References.dialog.display_dialog()
