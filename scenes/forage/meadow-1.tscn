@@ -1,68 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://wjh47y0m6qo2"]
+[gd_scene load_steps=3 format=3 uid="uid://wjh47y0m6qo2"]
 
 [ext_resource type="Script" path="res://scenes/forage/meadow-1.gd" id="1_h23cx"]
-[ext_resource type="Texture2D" uid="uid://bmhic1lt64v5g" path="res://assets/sprites/forage/meadow/meadow-plant-1.png" id="1_vfjkl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mjo2"]
-atlas = ExtResource("1_vfjkl")
-region = Rect2(0, 0, 100, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t7yrr"]
-atlas = ExtResource("1_vfjkl")
-region = Rect2(100, 0, 100, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2nob"]
-atlas = ExtResource("1_vfjkl")
-region = Rect2(200, 0, 100, 180)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cy362"]
-animations = [{
-"frames": [{
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_2mjo2")
-}, {
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_t7yrr")
-}, {
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_e2nob")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://bd24oamf10s61" path="res://scenes/forage/meadow-plant-1.tscn" id="2_ggl14"]
 
 [node name="meadow-1" type="Node2D"]
 script = ExtResource("1_h23cx")
 
-[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.784314, 0.784314, 0.784314, 1)
-position = Vector2(731, 289.4)
-scale = Vector2(10.74, 10.74)
-sprite_frames = SubResource("SpriteFrames_cy362")
-frame_progress = 0.961339
+[node name="MeadowPlant2" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(1210, 114)
+scale = Vector2(15.4485, 15.4485)
+colorBase = 0.7
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(454, 540)
-scale = Vector2(6, 6)
-sprite_frames = SubResource("SpriteFrames_cy362")
-frame_progress = 0.961339
+[node name="MeadowPlant3" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(1687, 18)
+scale = Vector2(15.7068, 18.2509)
+colorBase = 0.6
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(915, 676)
-scale = Vector2(4.78, 4.78)
-sprite_frames = SubResource("SpriteFrames_cy362")
-frame_progress = 0.961339
+[node name="MeadowPlant4" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(1738, 363)
+scale = Vector2(10.5115, 12.2142)
 
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.901961, 0.901961, 0.901961, 1)
-position = Vector2(1671, 585)
-scale = Vector2(5.94, 5.94)
-sprite_frames = SubResource("SpriteFrames_cy362")
-frame_progress = 0.961339
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-position = Vector2(1359, 466)
-scale = Vector2(7.82, 7.82)
-sprite_frames = SubResource("SpriteFrames_cy362")
-frame_progress = 0.961339
+[node name="MeadowPlant" parent="." instance=ExtResource("2_ggl14")]

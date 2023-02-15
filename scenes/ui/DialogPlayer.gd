@@ -10,6 +10,7 @@ var tw
 func _ready():
 	$Background.visible = false
 	References.dialog = self
+	$Area2D.hide()
 
 
 func start_dialog(dialog_text:Array, key:int): 
