@@ -7,7 +7,7 @@ var dialog
 var forageOverlay
 
 signal examine(_from_node)
-signal forage(_from_node)
+signal forage(_from_node, forage_key, forage_target)
 
 var actions = {
 	"examine": {
@@ -15,7 +15,7 @@ var actions = {
 		"desc": "EXAMINE"
 	}, 
 	"forage": {
-		"signal_call": func(_from_node, forage_key): emit_signal("forage", _from_node,forage_key),
+		"signal_call": func(_from_node, forage_key, forage_target): emit_signal("forage", _from_node,forage_key, forage_target),
 		"desc": "FORAGE",
 		"forage_key": "meadow-1",
 		"target_herb": "rose"
@@ -25,6 +25,10 @@ var actions = {
 
 var forages = {
 	"meadow-1": "res://scenes/forage/meadow-1.tscn"
+}
+
+var forage_targets = {
+	"rose": "res://assets/sprites/forage/meadow/rose-herb.png"
 }
 
 

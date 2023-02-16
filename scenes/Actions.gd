@@ -39,19 +39,19 @@ func _on_object_menu_toggle(toggleState, object_menu, _from_node): #Object node 
 
 func _on_examine(object_menu_btn): #References node emit from object menu click
 	if (playerInput == true && worldInput == true):
-		prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description)
+		#prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description)
 		object_menu_btn.object_node.toggleState = !object_menu_btn.object_node.toggleState
 		object_menu_btn.get_parent().hide_menu()
 		#pass dialog text array to dialogbox and tell it to start
 		References.dialog.start_dialog(object_menu_btn.object_node.description, 0)
 
 
-func _on_forage(object_menu_btn, forage_key): #References node emit from object menu click
+func _on_forage(object_menu_btn, forage_key, forage_target): #References node emit from object menu click
 	if (playerInput == true && worldInput == true):
-		prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description, forage_key)
+		#prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description, forage_key)
 		object_menu_btn.object_node.toggleState = !object_menu_btn.object_node.toggleState
 		object_menu_btn.get_parent().hide_menu()
-		References.forageOverlay.show_overlay(forage_key)
+		References.forageOverlay.show_overlay(forage_key, forage_target)
 	
 
 
@@ -66,3 +66,10 @@ func _on_clicked_plant(_from_node):
 
 func _on_picked_herb(_from_node):
 	References.forageOverlay.finish_game()
+
+
+func _on_forage_add_to_inventory(forage_target, _from_node):
+	print("closeout", forage_target)
+	References.forageOverlay.hide_overlay()
+	References.get_node("State").inventory_state.herb_bag.contents.push_back(forage_target)
+	#add to inventory

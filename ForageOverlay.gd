@@ -3,15 +3,19 @@ extends Node2D
 
 var brushed_count = 0
 var plant_count
+var overlay_forage_key
+var overlay_forage_target
 
 func _ready():
 	References.forageOverlay = self
 
 
-func show_overlay(forage_key): 
+func show_overlay(forage_key, forage_target): 
 	#handles moving the forage screen in and setting up the screen
 	
-	prints("received key", forage_key)
+	#prints("received key", forage_key, "for target", forage_target)
+	overlay_forage_key = forage_key
+	overlay_forage_target = forage_target
 	Actions.playerInput = false
 	$BackgroundColor.modulate = Color(0,0,0,1)
 	$TargetPlant.reset()
@@ -37,7 +41,10 @@ func hide_overlay():
 	tw.tween_property($TextureButton, "modulate", Color(1, 1, 1, 0), .25)
 	brushed_count = 0
 	plant_count = 0
+	$ForageEndScreen.fade_out()
+	
 	await tw.finished
+	
 	Actions.playerInput = true
 	Actions.worldInput = true
 	for n in $Forage.get_children():
@@ -54,6 +61,8 @@ func load_forage(forage_key:String):
 	var forage = forageInstance.instantiate()
 	$Forage.add_child(forage)
 	plant_count = $Forage.get_child(0).get_child_count()
+	$TargetPlant.texture = load(References.forage_targets[overlay_forage_target])
+	$ForageEndScreen/VBoxContainer/Sprite2D.texture = load(References.forage_targets[overlay_forage_target])
 
 
 func handle_plant_state_update():
@@ -62,7 +71,6 @@ func handle_plant_state_update():
 	
 	if brushed_count <= plant_count:
 		var colorBalance = float(brushed_count)/float(plant_count)
-		print(colorBalance)
 		$BackgroundColor.modulate = Color(colorBalance,colorBalance,colorBalance,1)
 		$TargetPlant.modulate = Color(1,1,1,colorBalance)
 	if brushed_count == plant_count:
@@ -71,7 +79,7 @@ func handle_plant_state_update():
 
 func finish_game():
 	print("game finish")
-	hide_overlay()
+	$ForageEndScreen.fade_in()
 	#Show herb picked UI
 		#include shiny sprite
 		#include btn to add to inventory
