@@ -4,10 +4,11 @@ extends Node2D
 var activePlants = []
 var top_plant
 var top_plant_z = -1
+signal clicked_plant(_from_node)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	connect("clicked_plant", Actions._on_clicked_plant)
 
 
 func _unhandled_input(event):
@@ -19,6 +20,9 @@ func _unhandled_input(event):
 		else:
 			top_plant.get_node("AnimatedSprite2D").frame = 2
 			top_plant.brushed_aside = true
+		
+		top_plant = null
+		emit_signal("clicked_plant", self)
 	
 	#if not click, decide which plant under the mouse is on top
 	else:

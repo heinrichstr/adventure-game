@@ -1,6 +1,8 @@
 extends Node2D
 #Container that loads in the forage game
 
+var brushed_count = 0
+var plant_count
 
 func _ready():
 	References.forageOverlay = self
@@ -27,6 +29,9 @@ func hide_overlay():
 	tw.tween_property(self, "position", Vector2(0,1100), .5)
 	tw.tween_property(self, "modulate", Color(0, 0, 0, 1), .5)
 	tw.tween_property($TextureButton, "modulate", Color(1, 1, 1, 0), .25)
+	brushed_count = 0
+	plant_count = 0
+	$BackgroundColor.modulate = Color(0,0,0,1)
 	await tw.finished
 	Actions.playerInput = true
 	Actions.worldInput = true
@@ -40,3 +45,10 @@ func load_forage(forage_key:String):
 	var forageInstance = load(instancePath)
 	var forage = forageInstance.instantiate()
 	$Forage.add_child(forage)
+	plant_count = $Forage.get_child(0).get_child_count()
+
+
+func handle_plant_state_update():
+	if brushed_count < plant_count:
+		var colorBalance = float(brushed_count)/float(plant_count + 1)
+		$BackgroundColor.modulate = Color(colorBalance,colorBalance,colorBalance,1)

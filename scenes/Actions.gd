@@ -57,3 +57,8 @@ func _on_forage(object_menu_btn, forage_key): #References node emit from object 
 
 func _on_forage_overlay_close_btn():
 	References.forageOverlay.hide_overlay()
+
+
+func _on_clicked_plant(_from_node):
+	References.forageOverlay.brushed_count += 1
+	References.forageOverlay.handle_plant_state_update()
