@@ -2,11 +2,16 @@ extends Area2D
 
 var moused = false
 var brushed_aside = false
+@export var left = false
 @export var colorBase = 0.9
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.modulate = Color(colorBase,colorBase,colorBase,1)
+	if self.global_position.x > 950:
+		left = false
+	else: 
+		left = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,15 +20,19 @@ func _process(delta):
 
 
 func _on_mouse_entered():
-	self.modulate = Color(colorBase + .1,colorBase + .1,colorBase + .1,1)
-	moused = true
+	if brushed_aside == false:
+		moused = true
 
 
 func _on_mouse_exited():
-	self.modulate = Color(colorBase,colorBase,colorBase,1)
+	#elf.modulate = Color(colorBase-0.1,colorBase-0.1,colorBase-0.1,1)
 	moused = false
 
 
-func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed('click') && moused:
-		brushed_aside = true
+func highlight():
+	self.modulate = Color(colorBase,colorBase,colorBase,1)
+
+
+func lowlight():
+	self.modulate = Color(colorBase-0.2,colorBase-0.2,colorBase-0.2,1)
+

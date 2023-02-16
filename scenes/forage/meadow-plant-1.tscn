@@ -4,41 +4,41 @@
 [ext_resource type="Shader" path="res://scenes/forage/meadow-1.gdshader" id="2_mkkhw"]
 [ext_resource type="Texture2D" uid="uid://bmhic1lt64v5g" path="res://assets/sprites/forage/meadow/meadow-plant-1.png" id="3_18srb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_khinr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wqcbd"]
 shader = ExtResource("2_mkkhw")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
-shader_parameter/maxStrength = 0.05
+shader_parameter/maxStrength = 0.01
 shader_parameter/strengthScale = 100.0
 shader_parameter/interval = 3.5
 shader_parameter/detail = 1.0
-shader_parameter/distortion = 0.395
+shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mjo2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkhhj"]
 atlas = ExtResource("3_18srb")
-region = Rect2(0, 0, 100, 180)
+region = Rect2(0, 0, 200, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t7yrr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vt4n"]
 atlas = ExtResource("3_18srb")
-region = Rect2(100, 0, 100, 180)
+region = Rect2(200, 0, 200, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2nob"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e4wv"]
 atlas = ExtResource("3_18srb")
-region = Rect2(200, 0, 100, 180)
+region = Rect2(400, 0, 200, 180)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cy362"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0u4b4"]
 animations = [{
 "frames": [{
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_2mjo2")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkhhj")
 }, {
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_t7yrr")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vt4n")
 }, {
-"duration": 10.0,
-"texture": SubResource("AtlasTexture_e2nob")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e4wv")
 }],
 "loop": true,
 "name": &"default",
@@ -46,21 +46,19 @@ animations = [{
 }]
 
 [node name="MeadowPlant" type="Area2D"]
-position = Vector2(731, 289.4)
 scale = Vector2(10.74, 10.74)
 script = ExtResource("1_ibxww")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(26.3501, -23.2775)
 polygon = PackedVector2Array(-28.771, -20.6145, -26.5363, -14.9348, -27.8399, -12.9795, -24.8603, -10.5587, -27.8399, -6.2756, -25.6983, -2.36499, -32.6816, 2.2905, -24.7672, 2.38361, -25.3259, 8.15643, -21.6946, 9.36686, -24.7672, 21.0987, -23.0913, 22.5885, -14.7114, 17.8399, -10.0559, 23.054, -13.9665, 27.6164, -21.2291, 32.5512, -21.2291, 36.2756, -13.0354, 34.5065, -11.6387, 40.9311, -19.46, 45.7728, -21.2291, 52.7561, -11.6387, 49.311, -6.70391, 50.6145, -7.16946, 56.7598, -21.5084, 61.6946, -25.6052, 75.3818, -43.3892, 75.4749, -37.7095, 65.3259, -47.8585, 56.108, -46.3687, 49.4041, -36.0335, 52.2905, -37.4302, 47.9143, -45.2514, 44.9348, -44.5065, 38.1378, -32.9609, 39.3482, -46.9274, 31.9926, -46.9274, 26.6853, -43.3892, 26.1266, -49.2551, 21.6574, -48.9758, 15.7914, -44.6927, 15.6052, -50.2793, 9.64619, -49.162, 3.40782, -43.2961, 4.80447, -46.7412, -8.51024, -42.4581, -10.5587, -40.8752, -9.44134, -40.3166, -18.9385, -35.1024, -18.5661, -32.0298, -21.1732)
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_khinr")
-position = Vector2(-62.5698, 37.1136)
-scale = Vector2(0.558659, 0.558659)
-sprite_frames = SubResource("SpriteFrames_cy362")
-frame_progress = 0.961339
-offset = Vector2(65.8333, -24.6667)
+material = SubResource("ShaderMaterial_wqcbd")
+scale = Vector2(0.545986, 0.545986)
+sprite_frames = SubResource("SpriteFrames_0u4b4")
+metadata/_edit_lock_ = true
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

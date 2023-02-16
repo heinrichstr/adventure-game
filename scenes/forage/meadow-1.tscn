@@ -1,23 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://wjh47y0m6qo2"]
+[gd_scene load_steps=5 format=3 uid="uid://wjh47y0m6qo2"]
 
 [ext_resource type="Script" path="res://scenes/forage/meadow-1.gd" id="1_h23cx"]
 [ext_resource type="PackedScene" uid="uid://bd24oamf10s61" path="res://scenes/forage/meadow-plant-1.tscn" id="2_ggl14"]
+[ext_resource type="Shader" path="res://scenes/forage/meadow-1.gdshader" id="4_oftmu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2ata"]
+shader = ExtResource("4_oftmu")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [node name="meadow-1" type="Node2D"]
+material = SubResource("ShaderMaterial_g2ata")
 script = ExtResource("1_h23cx")
 
-[node name="MeadowPlant2" parent="." instance=ExtResource("2_ggl14")]
-position = Vector2(1210, 114)
+[node name="MeadowPlant6" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(1085, 348)
 scale = Vector2(15.4485, 15.4485)
+left = true
 colorBase = 0.7
 
 [node name="MeadowPlant3" parent="." instance=ExtResource("2_ggl14")]
-position = Vector2(1687, 18)
+position = Vector2(1324, 224)
 scale = Vector2(15.7068, 18.2509)
-colorBase = 0.6
+colorBase = 0.7
+
+[node name="MeadowPlant7" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(1804, 208)
+scale = Vector2(15.7068, 18.2509)
+colorBase = 0.7
+
+[node name="MeadowPlant2" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(668, 341)
+scale = Vector2(15.4485, 15.4485)
+left = true
+colorBase = 0.7
 
 [node name="MeadowPlant4" parent="." instance=ExtResource("2_ggl14")]
-position = Vector2(1738, 363)
+position = Vector2(1612, 498)
 scale = Vector2(10.5115, 12.2142)
 
 [node name="MeadowPlant" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(258, 566)
+left = true
+colorBase = 0.8
+
+[node name="MeadowPlant5" parent="." instance=ExtResource("2_ggl14")]
+position = Vector2(919, 597)
+scale = Vector2(10.767, 10.767)
+left = true
