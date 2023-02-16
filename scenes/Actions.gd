@@ -62,3 +62,7 @@ func _on_forage_overlay_close_btn():
 func _on_clicked_plant(_from_node):
 	References.forageOverlay.brushed_count += 1
 	References.forageOverlay.handle_plant_state_update()
+
+
+func _on_picked_herb(_from_node):
+	References.forageOverlay.finish_game()

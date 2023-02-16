@@ -8,9 +8,13 @@ func _ready():
 	References.forageOverlay = self
 
 
-func show_overlay(forage_key):
+func show_overlay(forage_key): 
+	#handles moving the forage screen in and setting up the screen
+	
 	prints("received key", forage_key)
 	Actions.playerInput = false
+	$BackgroundColor.modulate = Color(0,0,0,1)
+	$TargetPlant.reset()
 	load_forage(forage_key)
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
 	tw.tween_property(self, "position", Vector2(0,0), .5)
@@ -24,6 +28,8 @@ func show_overlay(forage_key):
 
 
 func hide_overlay():
+	#hides and resets the overlay, including unloading the forage items
+	
 	Actions.playerInput = false
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
 	tw.tween_property(self, "position", Vector2(0,1100), .5)
@@ -31,7 +37,6 @@ func hide_overlay():
 	tw.tween_property($TextureButton, "modulate", Color(1, 1, 1, 0), .25)
 	brushed_count = 0
 	plant_count = 0
-	$BackgroundColor.modulate = Color(0,0,0,1)
 	await tw.finished
 	Actions.playerInput = true
 	Actions.worldInput = true
@@ -41,6 +46,9 @@ func hide_overlay():
 
 
 func load_forage(forage_key:String):
+	#loads in which forage overlay to use
+	#TODO also load in the herb sprite and set the target plant to that herb
+	
 	var instancePath = References.forages[forage_key]
 	var forageInstance = load(instancePath)
 	var forage = forageInstance.instantiate()
@@ -49,6 +57,21 @@ func load_forage(forage_key:String):
 
 
 func handle_plant_state_update():
-	if brushed_count < plant_count:
-		var colorBalance = float(brushed_count)/float(plant_count + 1)
+	#Called via signal by Actions
+	#Slowly reveals the herb and background
+	
+	if brushed_count <= plant_count:
+		var colorBalance = float(brushed_count)/float(plant_count)
+		print(colorBalance)
 		$BackgroundColor.modulate = Color(colorBalance,colorBalance,colorBalance,1)
+		$TargetPlant.modulate = Color(1,1,1,colorBalance)
+	if brushed_count == plant_count:
+		$TargetPlant.set_active()
+
+
+func finish_game():
+	print("game finish")
+	hide_overlay()
+	#Show herb picked UI
+		#include shiny sprite
+		#include btn to add to inventory

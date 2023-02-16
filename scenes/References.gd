@@ -17,7 +17,8 @@ var actions = {
 	"forage": {
 		"signal_call": func(_from_node, forage_key): emit_signal("forage", _from_node,forage_key),
 		"desc": "FORAGE",
-		"forage_key": "meadow-1"
+		"forage_key": "meadow-1",
+		"target_herb": "rose"
 	}
 }
 

@@ -16,7 +16,7 @@ func _process(delta):
 
 func _on_pressed():
 	if buttonType == "FORAGE":
-		emitter.call(self, object_node.forage_key)
+		emitter.call(self, object_node.forage_key, object_node.forage_target)
 	else: 
 		emitter.call(self)
 

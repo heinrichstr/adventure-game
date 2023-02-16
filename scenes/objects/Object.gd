@@ -4,6 +4,7 @@ var toggleState = false
 @onready var actions = [References.actions.examine, References.actions.forage, References.actions.examine]
 @onready var description = References.dialog.item_descriptions.stick
 var forage_key = "meadow-1"
+var target_herb = "rose"
 signal object_menu_toggle(toggleState, objectMenu, fromNode)
 
 
