@@ -51,7 +51,13 @@ func play_click_anim(): #handles animating the sprite pos when clicked and parti
 
 
 func set_active():
+	var particles = particlesInstance.instantiate()
+	particles.position = Vector2(960, 1080)
+	add_child(particles)
+	particles.emitting = true
 	clickable = true
+	await get_tree().create_timer(5.0).timeout
+	particles.queue_free()
 
 
 func reset(): #called to set back to base

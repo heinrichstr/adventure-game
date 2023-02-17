@@ -45,6 +45,7 @@ func hide_overlay():
 	
 	await tw.finished
 	
+	Input.set_custom_mouse_cursor(References.default_cursor)
 	Actions.playerInput = true
 	Actions.worldInput = true
 	for n in $Forage.get_children():
@@ -72,9 +73,10 @@ func handle_plant_state_update():
 	if brushed_count <= plant_count:
 		var colorBalance = float(brushed_count)/float(plant_count)
 		$BackgroundColor.modulate = Color(colorBalance,colorBalance,colorBalance,1)
-		$TargetPlant.modulate = Color(1,1,1,colorBalance)
+		$TargetPlant.modulate = Color(colorBalance*.5,colorBalance*.5,colorBalance*.5,colorBalance)
 	if brushed_count == plant_count:
 		$TargetPlant.set_active()
+		$TargetPlant.modulate = Color(1,1,1,1)
 
 
 func finish_game():

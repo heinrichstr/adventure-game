@@ -7,6 +7,7 @@ var brushed_aside = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimatedSprite2D.material.set_shader_parameter("offset", self.global_position.x/400)
 	self.modulate = Color(colorBase,colorBase,colorBase,1)
 	if self.global_position.x > 950:
 		left = false
@@ -21,6 +22,7 @@ func _process(delta):
 
 func _on_mouse_entered():
 	if brushed_aside == false:
+		Input.set_custom_mouse_cursor(References.hand_cursor)
 		moused = true
 
 

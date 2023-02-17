@@ -6,6 +6,9 @@ var space
 var dialog
 var forageOverlay
 
+var hand_cursor = preload("res://assets/sprites/ui/glove-cursor.png")
+var default_cursor = preload("res://assets/sprites/ui/pointer-cursor.png")
+
 signal examine(_from_node)
 signal forage(_from_node, forage_key, forage_target)
 

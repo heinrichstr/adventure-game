@@ -65,6 +65,7 @@ func _on_clicked_plant(_from_node):
 
 
 func _on_picked_herb(_from_node):
+	Input.set_custom_mouse_cursor(References.default_cursor)
 	References.forageOverlay.finish_game()
 
 

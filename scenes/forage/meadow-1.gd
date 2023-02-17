@@ -22,6 +22,7 @@ func _unhandled_input(event):
 			top_plant.brushed_aside = true
 		
 		top_plant = null
+		
 		emit_signal("clicked_plant", self)
 	
 	#if not click, decide which plant under the mouse is on top

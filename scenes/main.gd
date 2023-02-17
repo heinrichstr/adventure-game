@@ -6,6 +6,7 @@ func _ready():
 	References.world = $World
 	References.player = $World/Player
 	References.space = $World/Space
+	Input.set_custom_mouse_cursor(References.default_cursor)
 	
 	#DisplayServer.window_set_size(Vector2i(1240, 1080))
 
