@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c60vk3bg00fie"]
+[gd_scene load_steps=47 format=3 uid="uid://c60vk3bg00fie"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_6ricj"]
 [ext_resource type="Texture2D" uid="uid://cpg1ol2g6amkx" path="res://assets/sprites/mockup/8 direction mock/8-dir-Sheet.png" id="2_jclt4"]
@@ -275,13 +275,80 @@ _data = {
 "up_right": SubResource("Animation_qmxjw")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5tsq"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4pvpi"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6b0ck"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7hay0"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fyhxb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_a5tsq")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_4pvpi")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_6b0ck")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_7hay0")
+blend_point_3/pos = Vector2(1, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x0yp5"]
+animation = &"down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2idso"]
+animation = &"up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2uwxc"]
+animation = &"left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2gcfo"]
+animation = &"right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7dxad"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x0yp5")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_2idso")
+blend_point_1/pos = Vector2(0, -0.9)
+blend_point_2/node = SubResource("AnimationNodeAnimation_2uwxc")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_2gcfo")
+blend_point_3/pos = Vector2(1, 0)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lknuf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjomu"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_16rtl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hhwhw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t40gs"]
+states/End/position = Vector2(934, 178)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_fyhxb")
+states/Idle/position = Vector2(361, 178)
+states/Movement/node = SubResource("AnimationNodeBlendSpace2D_7dxad")
+states/Movement/position = Vector2(381, 97)
+states/Start/position = Vector2(195, 178)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lknuf"), "Idle", "End", SubResource("AnimationNodeStateMachineTransition_kjomu"), "Start", "Movement", SubResource("AnimationNodeStateMachineTransition_16rtl"), "Movement", "End", SubResource("AnimationNodeStateMachineTransition_hhwhw")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7l2s2"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6ricj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0sicj")
-frame = 11
+frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tqn1e")
@@ -291,3 +358,11 @@ root_node = NodePath("../AnimatedSprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_grvx1")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_t40gs")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7l2s2")
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Movement/blend_position = Vector2(0.02194, -0.20524)
