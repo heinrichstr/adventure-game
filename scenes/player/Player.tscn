@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c60vk3bg00fie"]
+[gd_scene load_steps=49 format=3 uid="uid://c60vk3bg00fie"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_6ricj"]
 [ext_resource type="Texture2D" uid="uid://dhqiuwxc320qc" path="res://assets/sprites/mockup/8 direction mock/8-dir-Sheet-v2.png" id="2_mskyf"]
@@ -363,13 +363,16 @@ transitions = ["Start", "idle-loop", SubResource("AnimationNodeStateMachineTrans
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_7l2s2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vfcg"]
+size = Vector2(47, 20)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6ricj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0sicj")
-frame = 8
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tqn1e")
@@ -388,3 +391,9 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7l2s2")
 parameters/Movement/blend_position = Vector2(-0.710162, 0.75108)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_1vfcg")

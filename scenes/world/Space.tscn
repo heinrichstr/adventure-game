@@ -1,12 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://dygmssoe8luh"]
+[gd_scene load_steps=9 format=3 uid="uid://dygmssoe8luh"]
 
 [ext_resource type="Script" path="res://scenes/world/Space.gd" id="1_0sflk"]
 [ext_resource type="Texture2D" uid="uid://d2pk05yt35tsn" path="res://assets/sprites/world/meadow/mock meadow.png" id="2_i7306"]
 [ext_resource type="PackedScene" uid="uid://c60vk3bg00fie" path="res://scenes/player/Player.tscn" id="3_m87gc"]
 [ext_resource type="PackedScene" uid="uid://b7ubtcjmkxlmn" path="res://scenes/world/meadow/Grass1.tscn" id="4_y4ulc"]
+[ext_resource type="Shader" uid="uid://db6qbo3862lrc" path="res://scenes/world/meadow/world-meadow-grass-wind.tres" id="5_p4otj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
 size = Vector2(1920, 1080)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tf6e5"]
+resource_local_to_scene = true
+shader = ExtResource("5_p4otj")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_feb2h"]
+resource_local_to_scene = true
+shader = ExtResource("5_p4otj")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_0sflk")
@@ -24,9 +51,10 @@ position = Vector2(960, 540)
 shape = SubResource("RectangleShape2D_gtvg3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(320, 544, 520, 488, 656, 368, 840, 336, 1200, 304, 1488, 392, 1440, 504, 1240, 744, 1040, 792, 752, 792, 384, 704)
+polygon = PackedVector2Array(320, 544, 520, 488, 712, 392, 840, 336, 1200, 304, 1461.55, 383.919, 1488, 392, 1440, 504, 1240, 744, 1040, 792, 752, 792, 384, 704)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-24, 208, 280, 240, 440, 360, 352, 416, 104, 472, 104, 648, 224, 712, 304, 856, 512, 952, 544, 1120, -120, 1144)
@@ -42,57 +70,31 @@ position = Vector2(461, 91)
 scale = Vector2(2, 2)
 
 [node name="Grass3" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(928, 344)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
-
-[node name="Grass2" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(816, 368)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
-
-[node name="Grass1" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(656, 376)
-scale = Vector2(4.1, 4.1)
-
-[node name="Grass4" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1117.5, 321)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
+material = SubResource("ShaderMaterial_tf6e5")
+position = Vector2(1197, 304)
+scale = Vector2(6, 6)
 
 [node name="Grass5" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1005.5, 345)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
+material = SubResource("ShaderMaterial_tf6e5")
+position = Vector2(968, 312)
+scale = Vector2(6, 6)
+
+[node name="Grass4" parent="." instance=ExtResource("4_y4ulc")]
+material = SubResource("ShaderMaterial_tf6e5")
+position = Vector2(1056, 328)
+scale = Vector2(6, 6)
+
+[node name="Grass1" parent="." instance=ExtResource("4_y4ulc")]
+material = SubResource("ShaderMaterial_feb2h")
+position = Vector2(696, 360)
+scale = Vector2(6, 6)
+
+[node name="Grass2" parent="." instance=ExtResource("4_y4ulc")]
+material = SubResource("ShaderMaterial_tf6e5")
+position = Vector2(832, 336)
+scale = Vector2(6, 6)
 
 [node name="Grass6" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(845.5, 353)
-scale = Vector2(4.1, 4.1)
-
-[node name="Grass7" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1270.5, 313)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
-
-[node name="Grass8" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1158.5, 337)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
-
-[node name="Grass9" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(998.5, 345)
-scale = Vector2(4.1, 4.1)
-
-[node name="Grass12" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1366.5, 353)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
-
-[node name="Grass11" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1456, 376)
-scale = Vector2(4.1, 4.1)
-offset = Vector2(-21.4634, -5.85365)
-
-[node name="Grass10" parent="." instance=ExtResource("4_y4ulc")]
-position = Vector2(1174.5, 336)
-scale = Vector2(4.1, 4.1)
+material = SubResource("ShaderMaterial_tf6e5")
+position = Vector2(1304, 344)
+scale = Vector2(6, 6)

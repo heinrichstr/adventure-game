@@ -5,3 +5,8 @@ extends Sprite2D
 func _ready():
 	self.material.set_shader_parameter("offset", self.global_position.x/800)
 	print(material["shader_parameter/offset"])
+	$Area2D.add_to_group("grass_walkable")
+
+#func _on_area_2d_area_entered(area):
+#	if area == References.player.get_node("Area2D"):
+#		prints("collision between", self, "and", area)
