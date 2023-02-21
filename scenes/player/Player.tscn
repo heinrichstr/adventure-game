@@ -372,7 +372,7 @@ script = ExtResource("1_6ricj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0sicj")
-frame = 9
+frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tqn1e")
