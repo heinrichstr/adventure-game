@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7ubtcjmkxlmn"]
+
+[ext_resource type="Shader" uid="uid://db6qbo3862lrc" path="res://scenes/world/meadow/world-meadow-grass-wind.tres" id="1_ismow"]
+[ext_resource type="Texture2D" uid="uid://r6wj3dv2kafs" path="res://assets/sprites/world/meadow/grass-tuft.png" id="2_21602"]
+[ext_resource type="Script" path="res://scenes/world/meadow/Grass1.gd" id="2_v74lr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ac4qp"]
+resource_local_to_scene = true
+shader = ExtResource("1_ismow")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.08
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[node name="Grass1" type="Sprite2D"]
+material = SubResource("ShaderMaterial_ac4qp")
+texture = ExtResource("2_21602")
+script = ExtResource("2_v74lr")
