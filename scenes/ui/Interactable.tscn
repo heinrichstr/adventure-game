@@ -1,0 +1,125 @@
+[gd_scene load_steps=14 format=3 uid="uid://ddq6jf5y5p2tc"]
+
+[ext_resource type="Script" path="res://scenes/ui/Interactable.gd" id="1_kqlb6"]
+[ext_resource type="Texture2D" uid="uid://cx172jctsms4x" path="res://assets/sprites/ui/interact-cloud.png" id="1_ymgpv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71nn6"]
+atlas = ExtResource("1_ymgpv")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhslk"]
+atlas = ExtResource("1_ymgpv")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foi4j"]
+atlas = ExtResource("1_ymgpv")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br1r3"]
+atlas = ExtResource("1_ymgpv")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt6sf"]
+atlas = ExtResource("1_ymgpv")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iguj"]
+atlas = ExtResource("1_ymgpv")
+region = Rect2(40, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dp7m8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71nn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhslk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foi4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br1r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt6sf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iguj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_u4sjx"]
+resource_name = "open"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_0x8j8"]
+resource_name = "close"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 3, 2, 1, 0, 5]
+}
+
+[sub_resource type="Animation" id="Animation_os6cm"]
+resource_name = "idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qx56f"]
+_data = {
+"close": SubResource("Animation_0x8j8"),
+"idle": SubResource("Animation_os6cm"),
+"open": SubResource("Animation_u4sjx")
+}
+
+[node name="Interactable" type="Node2D"]
+script = ExtResource("1_kqlb6")
+
+[node name="Cloud" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dp7m8")
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cloud"]
+libraries = {
+"": SubResource("AnimationLibrary_qx56f")
+}
+
+[node name="InteractBtn" type="Sprite2D" parent="."]
+
+[connection signal="animation_finished" from="Cloud/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

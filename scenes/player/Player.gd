@@ -20,7 +20,7 @@ func update_anim_params(move_vector:Vector2):
 
 
 func animate_overlapping_grass():
-	overlapping = $Area2D.get_overlapping_areas()
+	overlapping = $PlayerArea2D.get_overlapping_areas()
 	for area in overlapping:
 		if area.is_in_group("grass_walkable") && area.get_parent().walkable:
 			var sprite = area.get_parent()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgned7um6siwo"]
+[gd_scene load_steps=5 format=3 uid="uid://cgned7um6siwo"]
 
 [ext_resource type="PackedScene" uid="uid://dygmssoe8luh" path="res://scenes/world/Space.tscn" id="1_k8i0t"]
 [ext_resource type="Script" path="res://scenes/world/World.gd" id="1_v6pds"]
-[ext_resource type="PackedScene" uid="uid://ce5olblq6vav5" path="res://scenes/objects/Object.tscn" id="4_wvj06"]
 [ext_resource type="PackedScene" uid="uid://doewqwkpp1fq4" path="res://scenes/ui/DialogPlayer.tscn" id="5_wq3pd"]
 [ext_resource type="PackedScene" uid="uid://dqmxihyc4i8r1" path="res://scenes/ui/ForageOverlay.tscn" id="6_t1m1v"]
 
@@ -10,10 +9,6 @@
 script = ExtResource("1_v6pds")
 
 [node name="Space" parent="." instance=ExtResource("1_k8i0t")]
-
-[node name="Object" parent="." instance=ExtResource("4_wvj06")]
-position = Vector2(1119, 212)
-scale = Vector2(2, 2)
 
 [node name="DialogPlayer" parent="." instance=ExtResource("5_wq3pd")]
 

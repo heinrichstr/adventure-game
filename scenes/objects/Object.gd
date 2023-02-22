@@ -1,15 +1,33 @@
 extends Node2D
 
-var toggleState = false
-@onready var actions = [References.actions.examine, References.actions.forage, References.actions.examine]
+#Variables that config the object
+@export var actions = {
+	"examine": true,
+	"forage": true,
+	"talk": true,
+	"interact": true
+}
+@export var forage_key:String
+@export var forage_target:String
+@export var item_desc_key:String
+
+#Variables set by the code to be used internally
+@onready var actionRefs:Array = []
 @onready var description = References.dialog.item_descriptions.stick
-var forage_key = "meadow-1"
-var forage_target = "rose"
+var toggleState = false
+
 signal object_menu_toggle(toggleState, objectMenu, fromNode)
 
 
 func _ready():
-	$Control/ObjectMenu.actions = actions
+	var actionIndex = 0
+	for action in actions.values():
+		if action == true:
+			actionRefs.push_back(References.objectActions[actions.keys()[actionIndex]])
+		actionIndex += 1
+	prints('actionsList', actionRefs)
+	
+	$Control/ObjectMenu.actions = actionRefs
 	$Control/ObjectMenu.build_menu()
 	$Control/ObjectMenu.place_buttons()
 	connect("object_menu_toggle", Actions._on_object_menu_toggle)
@@ -20,10 +38,3 @@ func _on_button_pressed():
 		emit_signal("object_menu_toggle", toggleState, $Control/ObjectMenu, self)
 		toggleState = !toggleState
 
-
-func _on_button_mouse_entered():
-	pass # Replace with function body.
-
-
-func _on_button_mouse_exited():
-	pass # Replace with function body.

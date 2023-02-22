@@ -372,9 +372,9 @@ script = ExtResource("1_6ricj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0sicj")
-frame = 8
+frame = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PathingCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tqn1e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -392,8 +392,8 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_7l2s2")
 parameters/Movement/blend_position = Vector2(-0.710162, 0.75108)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea2D"]
 position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_1vfcg")

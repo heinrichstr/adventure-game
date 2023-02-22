@@ -1,8 +1,6 @@
 extends Control
 
-#TODO: Package the button scene to dynamically add it based on what the object sets for actions
-	#get scale under control I can't read shit in these button labels
-	
+
 var actions
 @onready var object_node = get_parent().get_parent()
 const ObjectMenuActionButton = preload("res://scenes/objects/ObjectMenuActionButton.tscn")
@@ -10,10 +8,12 @@ const ObjectMenuActionButton = preload("res://scenes/objects/ObjectMenuActionBut
 var button_radius = 40 #in godot position units
 var radial_width = 40 #in godot position units
 
+
 func _ready():
 	self.scale = Vector2(0,0)
 	self.modulate = Color(1, 1, 1, 0)
 	hide()
+
 
 func show_menu():
 	show()

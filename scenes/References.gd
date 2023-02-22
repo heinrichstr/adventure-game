@@ -11,8 +11,10 @@ var default_cursor = preload("res://assets/sprites/ui/pointer-cursor.png")
 
 signal examine(_from_node)
 signal forage(_from_node, forage_key, forage_target)
+signal talk(_from_node)
+signal interact(_from_node)
 
-var actions = {
+var objectActions = {
 	"examine": {
 		"signal_call": func(_from_node): emit_signal("examine", _from_node),
 		"desc": "EXAMINE"
@@ -22,7 +24,15 @@ var actions = {
 		"desc": "FORAGE",
 		"forage_key": "meadow-1",
 		"target_herb": "rose"
-	}
+	},
+	"talk": {
+		"signal_call": func(_from_node): emit_signal("talk", _from_node),
+		"desc": "TALK"
+	}, 
+	"interact": {
+		"signal_call": func(_from_node): emit_signal("interact", _from_node),
+		"desc": "INTERACT"
+	}, 
 }
 
 
