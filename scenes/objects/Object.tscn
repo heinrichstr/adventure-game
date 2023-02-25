@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce5olblq6vav5"]
+[gd_scene load_steps=7 format=3 uid="uid://ce5olblq6vav5"]
 
 [ext_resource type="Script" path="res://scenes/objects/Object.gd" id="1_w3p5l"]
 [ext_resource type="Texture2D" uid="uid://dhbbidmmrh4ja" path="res://assets/sprites/mockup/Outdoors_53.png" id="2_oxxtr"]
 [ext_resource type="PackedScene" uid="uid://obxs5t3bfvd5" path="res://scenes/objects/ObjectMenu.tscn" id="3_6dn6v"]
+[ext_resource type="PackedScene" uid="uid://ddq6jf5y5p2tc" path="res://scenes/ui/Interactable.tscn" id="4_d7q2j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2bv54"]
 animations = [{
@@ -16,7 +17,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4m1x"]
-radius = 16.0312
+radius = 59.0339
 
 [node name="Object" type="Node2D"]
 script = ExtResource("1_w3p5l")
@@ -55,6 +56,11 @@ offset_top = -4.0
 offset_right = 33.0
 offset_bottom = 23.0
 
+[node name="Interactable" parent="." instance=ExtResource("4_d7q2j")]
+position = Vector2(0, -21)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]
 [connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]

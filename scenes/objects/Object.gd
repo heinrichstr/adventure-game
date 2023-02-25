@@ -15,6 +15,7 @@ extends Node2D
 @onready var actionRefs:Array = []
 @onready var description = References.dialog.item_descriptions.stick
 var toggleState = false
+var interactable = false
 
 signal object_menu_toggle(toggleState, objectMenu, fromNode)
 
@@ -38,3 +39,17 @@ func _on_button_pressed():
 		emit_signal("object_menu_toggle", toggleState, $Control/ObjectMenu, self)
 		toggleState = !toggleState
 
+
+func _on_area_2d_area_entered(area):
+	if area == References.player.get_node("PlayerArea2D"):
+		$Interactable.open_interact()
+		interactable = true
+		References.activeObject = self
+		prints("active? ", References.activeObject)
+
+
+func _on_area_2d_area_exited(area):
+	$Interactable.close_interact()
+	interactable = false
+	References.activeObject = null
+	prints("active? ", References.activeObject)

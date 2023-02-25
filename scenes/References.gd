@@ -14,6 +14,8 @@ signal forage(_from_node, forage_key, forage_target)
 signal talk(_from_node)
 signal interact(_from_node)
 
+var activeObject #objects update this when they are interactable
+
 var objectActions = {
 	"examine": {
 		"signal_call": func(_from_node): emit_signal("examine", _from_node),

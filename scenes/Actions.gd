@@ -12,6 +12,11 @@ func _process(_delta):
 	pass
 
 
+func _unhandled_input(event):
+	if InputMap.event_is_action(event, "input") && References.activeObject:
+		References.activeObject._on_button_pressed()
+
+
 func _on_click_on_space(target, _from_node): #Space node emit
 # called when user clicks on the screen to move the character
 # creates an array of Vector2() paths navigating with the navmesh of the Space
@@ -26,15 +31,17 @@ func _on_click_on_space(target, _from_node): #Space node emit
 		References.player.target = References.player.path[0]
 
 
-func _on_object_menu_toggle(toggleState, object_menu, _from_node): #Object node emit
+func _on_object_menu_toggle(toggleState, object_menu, from_node): #Object node emit
 #called when user clicks on an object
 #shows or hides the menu
 	if References.dialog.in_progress == false:
 		if (playerInput == true):
 			if(toggleState):
-				object_menu.hide_menu() #replace with tween
+				#object_menu.hide_menu() #replace with tween
+				from_node.get_node("Interactable").close_interact()
 			else:
-				object_menu.show_menu() #replace with tween
+				#object_menu.show_menu() #replace with tween
+				from_node.get_node("Interactable").open_interact()
 
 
 func _on_examine(object_menu_btn): #References node emit from object menu click
