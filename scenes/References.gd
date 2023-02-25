@@ -5,6 +5,7 @@ var player
 var space
 var dialog
 var forageOverlay
+@onready var State = $State
 
 var hand_cursor = preload("res://assets/sprites/ui/glove-cursor.png")
 var default_cursor = preload("res://assets/sprites/ui/pointer-cursor.png")

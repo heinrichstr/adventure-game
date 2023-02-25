@@ -9,10 +9,16 @@ func _ready():
 	$AnimationTree.get("parameters/playback").travel("idle-loop")
 
 
-func get_input():
-	input_vector.x = Input.get_action_strength("player_right") - Input.get_action_strength("player_left")
-	input_vector.y = Input.get_action_strength("player_down") - Input.get_action_strength("player_up")
-	input_vector = input_vector.normalized()
+func get_input(keyboardUsed):
+	var input_vector_temp
+	if keyboardUsed:
+		input_vector_temp = Input.get_vector("player_left","player_right","player_up","player_down")
+	else:
+		input_vector_temp = Input.get_vector("gamepad_left","gamepad_right","gamepad_up","gamepad_down")
+	
+	input_vector_temp = input_vector_temp.normalized()
+	print("vector; ", input_vector_temp)
+	return input_vector_temp
 
 
 func update_anim_params(move_vector:Vector2):
@@ -36,10 +42,15 @@ func _physics_process(delta):
 	$"AnimationTree".advance(delta) #makes the animations play better? Currently an engine issue (4.0 rc2)
 	
 	if Actions.playerInput: #if actions are allowed
-		get_input() #Update movement vector
+		if Input.is_action_pressed("gamepad_up") || Input.is_action_pressed("gamepad_down") || Input.is_action_pressed("gamepad_left") || Input.is_action_pressed("gamepad_right"):
+			References.State.keyboard = false
+		elif Input.is_action_pressed("player_up") || Input.is_action_pressed("player_down") || Input.is_action_pressed("player_left") || Input.is_action_pressed("player_right"):
+			References.State.keyboard = true
+		
+		var input = get_input(References.State.keyboard) #Update movement vector
 		
 		#set anim state based on movement vector
-		if input_vector == Vector2.ZERO:
+		if input == Vector2.ZERO:
 			$AnimationTree.get("parameters/playback").travel("idle-loop")
 		else:
 			$AnimationTree.get("parameters/playback").travel("Movement")
@@ -47,14 +58,14 @@ func _physics_process(delta):
 			animate_overlapping_grass()
 		
 		#Move the player with animation
-		update_anim_params(input_vector)
-		velocity = input_vector * speed
+		update_anim_params(input)
+		velocity = input * speed
 		move_and_slide()
 		
 		#Hide cursor when moving (May remove in future)
-		if Input.is_action_pressed("player_left") || Input.is_action_pressed("player_right") || Input.is_action_pressed("player_up") || Input.is_action_pressed("player_down"):
+		if References.State.keyboard == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		else:
+		elif References.State.keyboard == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-		past_vector = input_vector
+		past_vector = input

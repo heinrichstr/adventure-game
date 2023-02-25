@@ -5,3 +5,5 @@ var inventory_state = {
 		"contents": []
 	}
 }
+
+var keyboard = true
