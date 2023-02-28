@@ -17,7 +17,6 @@ func get_input(keyboardUsed):
 		input_vector_temp = Input.get_vector("gamepad_left","gamepad_right","gamepad_up","gamepad_down")
 	
 	input_vector_temp = input_vector_temp.normalized()
-	print("vector; ", input_vector_temp)
 	return input_vector_temp
 
 

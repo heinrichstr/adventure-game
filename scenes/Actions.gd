@@ -12,11 +12,6 @@ func _process(_delta):
 	pass
 
 
-func _unhandled_input(event):
-	if InputMap.event_is_action(event, "input") && References.activeObject:
-		References.activeObject._on_button_pressed()
-
-
 func _on_click_on_space(target, _from_node): #Space node emit
 # called when user clicks on the screen to move the character
 # creates an array of Vector2() paths navigating with the navmesh of the Space
