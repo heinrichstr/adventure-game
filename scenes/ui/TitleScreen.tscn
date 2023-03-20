@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpkwwgythlc82"]
+
+[ext_resource type="Script" path="res://scenes/ui/TitleScreen.gd" id="1_3o0a8"]
+[ext_resource type="Texture2D" uid="uid://bmkb4o03i8ihu" path="res://assets/ui/menu_btn.png" id="1_dtywc"]
+[ext_resource type="FontFile" uid="uid://p0hqlvau0h7r" path="res://assets/fonts/alagard.ttf" id="2_6p6pj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6lpw"]
+font = ExtResource("2_6p6pj")
+font_size = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0s1c"]
+atlas = ExtResource("1_dtywc")
+region = Rect2(0, 0, 100, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rq85"]
+atlas = ExtResource("1_dtywc")
+region = Rect2(100, 0, 100, 40)
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3o0a8")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Name"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+text = "Newest game around"
+label_settings = SubResource("LabelSettings_y6lpw")
+horizontal_alignment = 1
+
+[node name="NewGameBtn" type="TextureButton" parent="CenterContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_h0s1c")
+texture_hover = SubResource("AtlasTexture_5rq85")
+stretch_mode = 0
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/MarginContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]

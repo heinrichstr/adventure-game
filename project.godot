@@ -17,13 +17,17 @@ config/icon="res://assets/static/icon.svg"
 
 [autoload]
 
-References="*res://scenes/References.tscn"
-Actions="*res://scenes/Actions.tscn"
+References="*res://scenes/singletons/References.tscn"
+Actions="*res://scenes/singletons/Actions.tscn"
+SaveManager="*res://scenes/singletons/SaveManager.tscn"
+SettingsManager="*res://scenes/singletons/SettingsManager.tscn"
+State="*res://scenes/singletons/State.tscn"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/borderless=true
 window/stretch/mode="viewport"
 
 [input]

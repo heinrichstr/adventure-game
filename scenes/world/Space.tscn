@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
 size = Vector2(1920, 1080)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gmkt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kauu5"]
 resource_local_to_scene = true
 shader = ExtResource("5_p4otj")
 shader_parameter/speed = 0.3
@@ -23,7 +23,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rlfe1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6wxk"]
 resource_local_to_scene = true
 shader = ExtResource("5_p4otj")
 shader_parameter/speed = 0.3
@@ -36,7 +36,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k15gr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yfa1"]
 resource_local_to_scene = true
 shader = ExtResource("5_p4otj")
 shader_parameter/speed = 0.3
@@ -49,7 +49,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4of7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gyyi"]
 resource_local_to_scene = true
 shader = ExtResource("5_p4otj")
 shader_parameter/speed = 0.3
@@ -62,7 +62,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4f1l6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6w3o"]
 resource_local_to_scene = true
 shader = ExtResource("5_p4otj")
 shader_parameter/speed = 0.3
@@ -75,7 +75,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xoala"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6am6"]
 resource_local_to_scene = true
 shader = ExtResource("5_p4otj")
 shader_parameter/speed = 0.3
@@ -89,6 +89,7 @@ shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
 [node name="Space" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_0sflk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -123,32 +124,32 @@ position = Vector2(461, 91)
 scale = Vector2(2, 2)
 
 [node name="Grass3" parent="." instance=ExtResource("4_y4ulc")]
-material = SubResource("ShaderMaterial_5gmkt")
+material = SubResource("ShaderMaterial_kauu5")
 position = Vector2(1197, 304)
 scale = Vector2(6, 6)
 
 [node name="Grass5" parent="." instance=ExtResource("4_y4ulc")]
-material = SubResource("ShaderMaterial_rlfe1")
+material = SubResource("ShaderMaterial_g6wxk")
 position = Vector2(968, 312)
 scale = Vector2(6, 6)
 
 [node name="Grass4" parent="." instance=ExtResource("4_y4ulc")]
-material = SubResource("ShaderMaterial_k15gr")
+material = SubResource("ShaderMaterial_6yfa1")
 position = Vector2(1056, 328)
 scale = Vector2(6, 6)
 
 [node name="Grass1" parent="." instance=ExtResource("4_y4ulc")]
-material = SubResource("ShaderMaterial_f4of7")
+material = SubResource("ShaderMaterial_6gyyi")
 position = Vector2(696, 360)
 scale = Vector2(6, 6)
 
 [node name="Grass2" parent="." instance=ExtResource("4_y4ulc")]
-material = SubResource("ShaderMaterial_4f1l6")
+material = SubResource("ShaderMaterial_c6w3o")
 position = Vector2(832, 336)
 scale = Vector2(6, 6)
 
 [node name="Grass6" parent="." instance=ExtResource("4_y4ulc")]
-material = SubResource("ShaderMaterial_xoala")
+material = SubResource("ShaderMaterial_c6am6")
 position = Vector2(1304, 344)
 scale = Vector2(6, 6)
 

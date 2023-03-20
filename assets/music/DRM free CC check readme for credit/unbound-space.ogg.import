@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cbn2dt4c7cm1"
+path="res://.godot/imported/unbound-space.ogg-01f4a52493be3dd31961eae3c5593922.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/DRM free CC check readme for credit/unbound-space.ogg"
+dest_files=["res://.godot/imported/unbound-space.ogg-01f4a52493be3dd31961eae3c5593922.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

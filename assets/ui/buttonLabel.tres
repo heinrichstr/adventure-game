@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c3r0bbw3x4dyg"]
+
+[ext_resource type="FontFile" uid="uid://p0hqlvau0h7r" path="res://assets/fonts/alagard.ttf" id="1_4vh64"]
+
+[resource]
+font = ExtResource("1_4vh64")
+font_size = 24

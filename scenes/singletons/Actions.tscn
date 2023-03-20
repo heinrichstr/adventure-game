@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca1fnf2rfe3io"]
+
+[ext_resource type="Script" path="res://scenes/singletons/Actions.gd" id="1_pqfc2"]
+
+[node name="Actions" type="Node2D"]
+script = ExtResource("1_pqfc2")

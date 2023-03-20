@@ -1,0 +1,176 @@
+[gd_scene load_steps=11 format=3 uid="uid://dn8anrotmqecc"]
+
+[ext_resource type="Script" path="res://scenes/ui/MainMenu.gd" id="1_yll8h"]
+[ext_resource type="Texture2D" uid="uid://bmkb4o03i8ihu" path="res://assets/ui/menu_btn.png" id="2_ein2q"]
+[ext_resource type="Script" path="res://scenes/ui/Menu.gd" id="2_k4sni"]
+[ext_resource type="Texture2D" uid="uid://b5am27ojapxol" path="res://assets/ui/menu_patch.png" id="3_asf2x"]
+[ext_resource type="LabelSettings" uid="uid://c3r0bbw3x4dyg" path="res://assets/ui/buttonLabel.tres" id="4_3i0l4"]
+[ext_resource type="PackedScene" uid="uid://dakryaji6x1pa" path="res://scenes/ui/SettingsMenu.tscn" id="6_t7llc"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Credits.tscn" id="7_d3t7w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn6hj"]
+atlas = ExtResource("2_ein2q")
+region = Rect2(0, 0, 100, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh26w"]
+atlas = ExtResource("2_ein2q")
+region = Rect2(100, 0, 100, 40)
+
+[sub_resource type="Theme" id="Theme_og1en"]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yll8h")
+
+[node name="Menu" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_k4sni")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Menu/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_asf2x")
+region_rect = Rect2(0, 0, 100, 100)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="MainMenu" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+label_settings = ExtResource("4_3i0l4")
+
+[node name="HSeparator" type="HSeparator" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ResumeBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_kn6hj")
+texture_hover = SubResource("AtlasTexture_hh26w")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_og1en")
+text = "Resume
+"
+label_settings = ExtResource("4_3i0l4")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="SettingsBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_kn6hj")
+texture_hover = SubResource("AtlasTexture_hh26w")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/SettingsBtn"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_og1en")
+text = "Settings"
+label_settings = ExtResource("4_3i0l4")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="CreditsBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_kn6hj")
+texture_hover = SubResource("AtlasTexture_hh26w")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/CreditsBtn"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_og1en")
+text = "Credits"
+label_settings = ExtResource("4_3i0l4")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="QuitBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_kn6hj")
+texture_hover = SubResource("AtlasTexture_hh26w")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/QuitBtn"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_og1en")
+text = "Quit"
+label_settings = ExtResource("4_3i0l4")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="SettingsMenu" parent="." instance=ExtResource("6_t7llc")]
+visible = false
+layout_mode = 1
+
+[node name="Credits" parent="." instance=ExtResource("7_d3t7w")]
+layout_mode = 1
+
+[connection signal="pressed" from="Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn" to="Menu" method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/MarginContainer/VBoxContainer/SettingsBtn" to="Menu" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/MarginContainer/VBoxContainer/CreditsBtn" to="Menu" method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/MarginContainer/VBoxContainer/QuitBtn" to="Menu" method="_on_quit_btn_pressed"]

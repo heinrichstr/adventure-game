@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcvimfbg580ws"]
+
+[ext_resource type="Script" path="res://scenes/ui/Credits.gd" id="1_5cdf0"]
+[ext_resource type="Texture2D" uid="uid://b5am27ojapxol" path="res://assets/ui/menu_patch.png" id="1_dv078"]
+[ext_resource type="Texture2D" uid="uid://b4jrogl5u650n" path="res://assets/ui/x-btn.png" id="2_ape3b"]
+[ext_resource type="LabelSettings" uid="uid://csvm34h65m0fr" path="res://scenes/ui/menu_title_style.tres" id="4_84nbx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upxi1"]
+atlas = ExtResource("2_ape3b")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb7qg"]
+atlas = ExtResource("2_ape3b")
+region = Rect2(27, 0, 27, 27)
+
+[node name="Credits" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5cdf0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_dv078")
+region_rect = Rect2(0, 0, 100, 100)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_upxi1")
+texture_hover = SubResource("AtlasTexture_hb7qg")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+label_settings = ExtResource("4_84nbx")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Game created by:
+Thomas Heinrichs
+
+Game Design by:
+Thomas Heinrichs
+
+Art by:
+Thomas Heinrichs
+
+Contains music ©2022 Retro Indie Josh (https://retroindiejosh.itch.io) licensed under Creative Commons Attribution 4.0 International"
+autowrap_mode = 3
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]

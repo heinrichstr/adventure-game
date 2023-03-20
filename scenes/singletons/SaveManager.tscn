@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://doy1xq2jhrd6a"]
+
+[ext_resource type="Script" path="res://scenes/singletons/SaveManager.gd" id="1_u0eoy"]
+
+[node name="SaveManager" type="Node2D"]
+script = ExtResource("1_u0eoy")

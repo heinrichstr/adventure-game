@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dxgf3fsl30cyl"
+path="res://.godot/imported/the-sun-awoke.ogg-aa7a3740238b9dee83f80d13f0b80afe.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/DRM free CC check readme for credit/the-sun-awoke.ogg"
+dest_files=["res://.godot/imported/the-sun-awoke.ogg-aa7a3740238b9dee83f80d13f0b80afe.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

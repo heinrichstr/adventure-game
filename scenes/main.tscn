@@ -1,13 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh61dkq05axpr"]
+[gd_scene load_steps=6 format=3 uid="uid://dh61dkq05axpr"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_l5du5"]
 [ext_resource type="PackedScene" uid="uid://cgned7um6siwo" path="res://scenes/world/World.tscn" id="1_uwrk0"]
-[ext_resource type="PackedScene" uid="uid://ccm88l3iel0cw" path="res://scenes/ui/Gui.tscn" id="2_tpfow"]
+[ext_resource type="PackedScene" uid="uid://dn8anrotmqecc" path="res://scenes/ui/MainMenu.tscn" id="3_lnqxo"]
+[ext_resource type="PackedScene" uid="uid://vjbvo3880thv" path="res://scenes/ui/GameMenu.tscn" id="4_0jip5"]
+[ext_resource type="AudioStream" uid="uid://8u6ea2bo7yc7" path="res://assets/music/DRM free CC check readme for credit/verdant-zen.ogg" id="5_fvfhm"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_l5du5")
 
 [node name="World" parent="." instance=ExtResource("1_uwrk0")]
 
-[node name="Gui" parent="." instance=ExtResource("2_tpfow")]
-metadata/_edit_lock_ = true
+[node name="MainMenu" parent="." instance=ExtResource("3_lnqxo")]
+
+[node name="GameMenu" parent="." instance=ExtResource("4_0jip5")]
+offset_left = -120.0
+offset_bottom = 60.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_fvfhm")
+bus = &"Music"
