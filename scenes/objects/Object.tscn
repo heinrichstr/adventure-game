@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce5olblq6vav5"]
+[gd_scene load_steps=6 format=3 uid="uid://ce5olblq6vav5"]
 
 [ext_resource type="Script" path="res://scenes/objects/Object.gd" id="1_w3p5l"]
 [ext_resource type="Texture2D" uid="uid://dhbbidmmrh4ja" path="res://assets/sprites/mockup/Outdoors_53.png" id="2_oxxtr"]
-[ext_resource type="PackedScene" uid="uid://obxs5t3bfvd5" path="res://scenes/objects/ObjectMenu.tscn" id="3_6dn6v"]
 [ext_resource type="PackedScene" uid="uid://ddq6jf5y5p2tc" path="res://scenes/ui/Interactable.tscn" id="4_d7q2j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2bv54"]
@@ -32,37 +31,8 @@ sprite_frames = SubResource("SpriteFrames_2bv54")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_i4m1x")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -10.0
-offset_top = -9.0
-offset_right = 10.0
-offset_bottom = 10.0
-mouse_filter = 2
-
-[node name="ObjectMenu" parent="Control" instance=ExtResource("3_6dn6v")]
-layout_mode = 1
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 1.0
-offset_bottom = 2.0
-
-[node name="Button" type="Button" parent="Control"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = -10.0
-offset_top = -4.0
-offset_right = 33.0
-offset_bottom = 23.0
-
 [node name="Interactable" parent="." instance=ExtResource("4_d7q2j")]
 position = Vector2(0, -21)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
-[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
-[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]
-[connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Control/Button" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

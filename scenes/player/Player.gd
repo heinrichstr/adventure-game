@@ -40,31 +40,31 @@ func animate_overlapping_grass():
 func _physics_process(delta):
 	$"AnimationTree".advance(delta) #makes the animations play better? Currently an engine issue (4.0 rc2)
 	
-	if Actions.playerInput: #if actions are allowed
-		if Input.is_action_pressed("gamepad_up") || Input.is_action_pressed("gamepad_down") || Input.is_action_pressed("gamepad_left") || Input.is_action_pressed("gamepad_right"):
-			References.State.keyboard = false
-		elif Input.is_action_pressed("player_up") || Input.is_action_pressed("player_down") || Input.is_action_pressed("player_left") || Input.is_action_pressed("player_right"):
-			References.State.keyboard = true
-		
-		var input = get_input(References.State.keyboard) #Update movement vector
-		
-		#set anim state based on movement vector
-		if input == Vector2.ZERO:
-			$AnimationTree.get("parameters/playback").travel("idle-loop")
-		else:
-			$AnimationTree.get("parameters/playback").travel("Movement")
-			#Check and see if player walks through grass and if so, animate it
-			animate_overlapping_grass()
-		
-		#Move the player with animation
-		update_anim_params(input)
-		velocity = input * speed
-		move_and_slide()
-		
-		#Hide cursor when moving (May remove in future)
-		if References.State.keyboard == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		elif References.State.keyboard == true:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-		past_vector = input
+	
+	if Input.is_action_pressed("gamepad_up") || Input.is_action_pressed("gamepad_down") || Input.is_action_pressed("gamepad_left") || Input.is_action_pressed("gamepad_right"):
+		References.State.keyboard = false
+	elif Input.is_action_pressed("player_up") || Input.is_action_pressed("player_down") || Input.is_action_pressed("player_left") || Input.is_action_pressed("player_right"):
+		References.State.keyboard = true
+	
+	var input = get_input(References.State.keyboard) #Update movement vector
+	
+	#set anim state based on movement vector
+	if input == Vector2.ZERO:
+		$AnimationTree.get("parameters/playback").travel("idle-loop")
+	else:
+		$AnimationTree.get("parameters/playback").travel("Movement")
+		#Check and see if player walks through grass and if so, animate it
+		animate_overlapping_grass()
+	
+	#Move the player with animation
+	update_anim_params(input)
+	velocity = input * speed
+	move_and_slide()
+	
+	#Hide cursor when moving (May remove in future)
+	if References.State.keyboard == false:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	elif References.State.keyboard == true:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	past_vector = input

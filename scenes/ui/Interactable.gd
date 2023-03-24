@@ -30,3 +30,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 func open_options():
 	print('opening')
+
+
+func load_menu(actions):
+	prints('laod menu', actions)

@@ -9,21 +9,16 @@ func _ready():
 
 
 func _process(_delta):
-	pass
+	if playerInput == true:
+		References.player.set_process_unhandled_input(true)
+		References.player.set_physics_process(true)
+	elif playerInput == false:
+		References.player.set_process_unhandled_input(false)
+		References.player.set_physics_process(false)
 
 
-func _on_click_on_space(target, _from_node): #Space node emit
-# called when user clicks on the screen to move the character
-# creates an array of Vector2() paths navigating with the navmesh of the Space
-# setting the target on the player causes the player to move
-	if (playerInput == true && worldInput == true):
-		References.player.path = NavigationServer2D.map_get_path(
-			default_2d_map_rid,
-			References.player.position,
-			target,
-			true
-		)
-		References.player.target = References.player.path[0]
+func toggle_player_input():
+	playerInput = not playerInput
 
 
 func _on_object_menu_toggle(toggleState, object_menu, from_node): #Object node emit

@@ -44,24 +44,12 @@ func _unhandled_input(event):
 	if event is InputEventJoypadButton:
 		if interactable:
 			if Input.is_action_just_pressed("input"):
-				_on_button_pressed("left")
-			elif Input.is_action_just_pressed("input_top"):
-				_on_button_pressed("top")
-			elif Input.is_action_just_pressed("input_right"):
-				_on_button_pressed("right")
+				_interact()
 
 
-func _on_button_pressed(btn):
-	#Take in button press, handle logic of what to do with it
-	
-	prints("btn press", btn)
-	if References.dialog.in_progress == false && objectState == objectStates.PROMPT:
-		if btn == "left":
-			objectState = objectStates.OPEN
-			$Interactable.open_options()
-	elif References.dialog.in_progress == false && objectState == objectStates.OPEN:
-		if btn == "left":
-			print('gettem')
+func _interact():
+	Actions.toggle_player_input()
+	$Interactable.load_menu(actions)
 
 
 func _on_area_2d_area_entered(area):
