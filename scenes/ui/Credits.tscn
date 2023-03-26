@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcvimfbg580ws"]
+[gd_scene load_steps=7 format=3 uid="uid://det141u84sw5n"]
 
 [ext_resource type="Script" path="res://scenes/ui/Credits.gd" id="1_5cdf0"]
 [ext_resource type="Texture2D" uid="uid://b5am27ojapxol" path="res://assets/ui/menu_patch.png" id="1_dv078"]
 [ext_resource type="Texture2D" uid="uid://b4jrogl5u650n" path="res://assets/ui/x-btn.png" id="2_ape3b"]
-[ext_resource type="LabelSettings" uid="uid://csvm34h65m0fr" path="res://scenes/ui/menu_title_style.tres" id="4_84nbx"]
+[ext_resource type="LabelSettings" path="res://scenes/ui/menu_title_style.tres" id="4_84nbx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upxi1"]
 atlas = ExtResource("2_ape3b")
@@ -51,6 +51,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../MarginContainer/VBoxContainer/ScrollContainer")
+focus_neighbor_bottom = NodePath("../MarginContainer/VBoxContainer/ScrollContainer")
+focus_next = NodePath("../MarginContainer/VBoxContainer/ScrollContainer")
+focus_previous = NodePath("../MarginContainer/VBoxContainer/ScrollContainer")
 texture_normal = SubResource("AtlasTexture_upxi1")
 texture_hover = SubResource("AtlasTexture_hb7qg")
 
@@ -78,6 +82,11 @@ theme_override_constants/separation = 30
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../TextureButton")
+focus_neighbor_bottom = NodePath("../../../TextureButton")
+focus_next = NodePath("../../../TextureButton")
+focus_previous = NodePath("../../../TextureButton")
+focus_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(300, 0)

@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgned7um6siwo"]
+[gd_scene load_steps=4 format=3 uid="uid://cgned7um6siwo"]
 
 [ext_resource type="PackedScene" uid="uid://dygmssoe8luh" path="res://scenes/world/Space.tscn" id="1_k8i0t"]
-[ext_resource type="Script" path="res://scenes/world/World.gd" id="1_v6pds"]
 [ext_resource type="PackedScene" uid="uid://doewqwkpp1fq4" path="res://scenes/ui/DialogPlayer.tscn" id="5_wq3pd"]
 [ext_resource type="PackedScene" uid="uid://dqmxihyc4i8r1" path="res://scenes/ui/ForageOverlay.tscn" id="6_t1m1v"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_v6pds")
 
 [node name="Space" parent="." instance=ExtResource("1_k8i0t")]
 

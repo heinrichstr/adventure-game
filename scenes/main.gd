@@ -16,3 +16,18 @@ func _on_menu_btn_pressed():
 		$MainMenu.hideMenu()
 	else:
 		$MainMenu.showMenu()
+
+func _physics_process(delta):
+	#Hide cursor when moving
+	
+	if References.State.keyboard == false:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	elif References.State.keyboard == true:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		References.State.keyboard = true
+	#if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion and Input.get_action_strength()):
+	#	References.State.keyboard = false

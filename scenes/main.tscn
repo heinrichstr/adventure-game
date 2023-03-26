@@ -7,9 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://8u6ea2bo7yc7" path="res://assets/music/DRM free CC check readme for credit/verdant-zen.ogg" id="5_fvfhm"]
 
 [node name="main" type="Node"]
+process_mode = 3
 script = ExtResource("1_l5du5")
 
 [node name="World" parent="." instance=ExtResource("1_uwrk0")]
+process_mode = 1
 
 [node name="MainMenu" parent="." instance=ExtResource("3_lnqxo")]
 

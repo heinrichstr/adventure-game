@@ -9,6 +9,7 @@ func _ready():
 
 
 func _process(_delta):
+	#used to "pause" player input globablly, set by toggle_player_input()
 	if playerInput == true:
 		References.player.set_process_unhandled_input(true)
 		References.player.set_physics_process(true)

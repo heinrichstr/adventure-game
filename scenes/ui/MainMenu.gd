@@ -10,7 +10,6 @@ var creditsShown = false
 
 func _ready():
 	#set menu to default view
-	
 	$Menu.hide()
 	$SettingsMenu.menu_node = self
 	$SettingsMenu.hide()
@@ -26,6 +25,7 @@ func showMenu():
 	get_tree().paused = true
 	$Menu.show()
 	shown = true
+	$Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn.grab_focus()
 
 
 func hideMenu():
@@ -50,19 +50,38 @@ func hideMenu():
 
 func show_settings():
 	$SettingsMenu.show()
+	$SettingsMenu/MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/MasterAudio.grab_focus()
 	settingsShown = true
 
 
 func hide_settings():
 	$SettingsMenu.hide()
 	settingsShown = false
+	$Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn.grab_focus()
 
 
 func show_credits():
 	$Credits.show()
+	$Credits/MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/ScrollContainer.grab_focus()
 	creditsShown = true
 
 
 func hide_credits():
 	$Credits.hide()
 	creditsShown = false
+	$Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn.grab_focus()
+
+
+func _unhandled_input(event):
+	if Input.is_action_just_released("start_menu"):
+		if shown == true:
+			hideMenu()
+		else:
+			showMenu()
+	elif Input.is_action_just_released("ui_cancel"):
+		if shown == true and settingsShown == false and creditsShown == false:
+			hideMenu()
+		elif settingsShown == true:
+			hide_settings()
+		elif creditsShown == true:
+			hide_credits()

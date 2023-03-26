@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn8anrotmqecc"]
+[gd_scene load_steps=12 format=3 uid="uid://dn8anrotmqecc"]
 
 [ext_resource type="Script" path="res://scenes/ui/MainMenu.gd" id="1_yll8h"]
 [ext_resource type="Texture2D" uid="uid://bmkb4o03i8ihu" path="res://assets/ui/menu_btn.png" id="2_ein2q"]
@@ -6,13 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://b5am27ojapxol" path="res://assets/ui/menu_patch.png" id="3_asf2x"]
 [ext_resource type="LabelSettings" uid="uid://c3r0bbw3x4dyg" path="res://assets/ui/buttonLabel.tres" id="4_3i0l4"]
 [ext_resource type="PackedScene" uid="uid://dakryaji6x1pa" path="res://scenes/ui/SettingsMenu.tscn" id="6_t7llc"]
-[ext_resource type="PackedScene" path="res://scenes/ui/Credits.tscn" id="7_d3t7w"]
+[ext_resource type="PackedScene" uid="uid://det141u84sw5n" path="res://scenes/ui/Credits.tscn" id="7_d3t7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kn6hj"]
 atlas = ExtResource("2_ein2q")
 region = Rect2(0, 0, 100, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hh26w"]
+atlas = ExtResource("2_ein2q")
+region = Rect2(100, 0, 100, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8ieh"]
 atlas = ExtResource("2_ein2q")
 region = Rect2(100, 0, 100, 40)
 
@@ -26,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_yll8h")
 
 [node name="Menu" type="CenterContainer" parent="."]
@@ -35,10 +40,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_k4sni")
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
@@ -55,6 +62,7 @@ patch_margin_bottom = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
@@ -62,6 +70,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 15
 
 [node name="MainMenu" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
@@ -72,12 +81,18 @@ label_settings = ExtResource("4_3i0l4")
 [node name="HSeparator" type="HSeparator" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="ResumeBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../QuitBtn")
+focus_neighbor_bottom = NodePath("../SettingsBtn")
+focus_next = NodePath("../SettingsBtn")
+focus_previous = NodePath("../QuitBtn")
 texture_normal = SubResource("AtlasTexture_kn6hj")
 texture_hover = SubResource("AtlasTexture_hh26w")
+texture_focused = SubResource("AtlasTexture_t8ieh")
 stretch_mode = 1
 
 [node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn"]
@@ -99,8 +114,13 @@ clip_text = true
 
 [node name="SettingsBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../ResumeBtn")
+focus_neighbor_bottom = NodePath("../CreditsBtn")
+focus_next = NodePath("../CreditsBtn")
+focus_previous = NodePath("../ResumeBtn")
 texture_normal = SubResource("AtlasTexture_kn6hj")
 texture_hover = SubResource("AtlasTexture_hh26w")
+texture_focused = SubResource("AtlasTexture_t8ieh")
 stretch_mode = 1
 
 [node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/SettingsBtn"]
@@ -121,8 +141,13 @@ clip_text = true
 
 [node name="CreditsBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsBtn")
+focus_neighbor_bottom = NodePath("../QuitBtn")
+focus_next = NodePath("../QuitBtn")
+focus_previous = NodePath("../SettingsBtn")
 texture_normal = SubResource("AtlasTexture_kn6hj")
 texture_hover = SubResource("AtlasTexture_hh26w")
+texture_focused = SubResource("AtlasTexture_t8ieh")
 stretch_mode = 1
 
 [node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/CreditsBtn"]
@@ -143,8 +168,13 @@ clip_text = true
 
 [node name="QuitBtn" type="TextureButton" parent="Menu/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CreditsBtn")
+focus_neighbor_bottom = NodePath("../ResumeBtn")
+focus_next = NodePath("../ResumeBtn")
+focus_previous = NodePath(".")
 texture_normal = SubResource("AtlasTexture_kn6hj")
 texture_hover = SubResource("AtlasTexture_hh26w")
+texture_focused = SubResource("AtlasTexture_t8ieh")
 stretch_mode = 1
 
 [node name="Label" type="Label" parent="Menu/MarginContainer/MarginContainer/VBoxContainer/QuitBtn"]

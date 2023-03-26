@@ -81,6 +81,10 @@ text = "Master Volume"
 
 [node name="MasterAudio" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Music")
+focus_neighbor_bottom = NodePath("../SoundEffects")
+focus_next = NodePath("../SoundEffects")
+focus_previous = NodePath("../Music")
 max_value = 1.0
 step = 0.05
 
@@ -95,6 +99,10 @@ text = "Sound Effects Volume"
 
 [node name="SoundEffects" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../MasterAudio")
+focus_neighbor_bottom = NodePath("../Music")
+focus_next = NodePath("../Music")
+focus_previous = NodePath("../MasterAudio")
 max_value = 1.0
 step = 0.05
 
@@ -109,6 +117,10 @@ text = "Music Volume"
 
 [node name="Music" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SoundEffects")
+focus_neighbor_bottom = NodePath("../MasterAudio")
+focus_next = NodePath("../MasterAudio")
+focus_previous = NodePath("../SoundEffects")
 max_value = 1.0
 step = 0.05
 

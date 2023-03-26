@@ -4,20 +4,41 @@ var speed = 400
 var input_vector:Vector2 = Vector2.ZERO
 var past_vector:Vector2
 var overlapping:Array
+var joystickInput = false
 
 func _ready():
 	$AnimationTree.get("parameters/playback").travel("idle-loop")
 
 
-func get_input(keyboardUsed):
+#button var that is set when a button is pressed, or set to joystick when a joystick is > 0.5 strength
+#which vector to use is determined by button
+
+func get_input_vector(eventType, event):
+	#handles joystick input state, then gets movement Vector from input
 	var input_vector_temp
-	if keyboardUsed:
+	
+	#handle joystick detection
+	if eventType == "button":
+		joystickInput = false
+		prints("button input detected")
+	elif eventType == "stick":
+		var down = Input.get_action_strength("gamepad_down")
+		var up = Input.get_action_strength("gamepad_up")
+		var left = Input.get_action_strength("gamepad_left")
+		var right = Input.get_action_strength("gamepad_right")
+		
+		if down > 0.5 or up > 0.5 or left > 0.5 or right > 0.5:
+			prints('joypad event and strength over deadzone', up, down, left, right)
+			joystickInput = true
+	
+	#handle setting movement vector based on above detection
+	if joystickInput == false:
 		input_vector_temp = Input.get_vector("player_left","player_right","player_up","player_down")
-	else:
+	elif joystickInput == true:
 		input_vector_temp = Input.get_vector("gamepad_left","gamepad_right","gamepad_up","gamepad_down")
 	
 	input_vector_temp = input_vector_temp.normalized()
-	return input_vector_temp
+	input_vector = input_vector_temp
 
 
 func update_anim_params(move_vector:Vector2):
@@ -37,34 +58,29 @@ func animate_overlapping_grass():
 					sprite.get_node("AnimationPlayer").play("push_left")
 
 
+func _unhandled_input(event):
+	#Detect input and organize by input type (either button press on keyboard/dpad or joystick motion)
+	
+	if event is InputEventJoypadMotion :
+		get_input_vector("stick", event)
+	elif event is InputEventKey or event is InputEventJoypadButton:
+		get_input_vector("button", event)
+
+
 func _physics_process(delta):
 	$"AnimationTree".advance(delta) #makes the animations play better? Currently an engine issue (4.0 rc2)
 	
-	
-	if Input.is_action_pressed("gamepad_up") || Input.is_action_pressed("gamepad_down") || Input.is_action_pressed("gamepad_left") || Input.is_action_pressed("gamepad_right"):
-		References.State.keyboard = false
-	elif Input.is_action_pressed("player_up") || Input.is_action_pressed("player_down") || Input.is_action_pressed("player_left") || Input.is_action_pressed("player_right"):
-		References.State.keyboard = true
-	
-	var input = get_input(References.State.keyboard) #Update movement vector
-	
 	#set anim state based on movement vector
-	if input == Vector2.ZERO:
+	if input_vector == Vector2.ZERO:
 		$AnimationTree.get("parameters/playback").travel("idle-loop")
 	else:
 		$AnimationTree.get("parameters/playback").travel("Movement")
 		#Check and see if player walks through grass and if so, animate it
 		animate_overlapping_grass()
 	
-	#Move the player with animation
-	update_anim_params(input)
-	velocity = input * speed
+	#Move the player with animation based on input vector variable
+	update_anim_params(input_vector)
+	velocity = input_vector * speed
 	move_and_slide()
 	
-	#Hide cursor when moving (May remove in future)
-	if References.State.keyboard == false:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	elif References.State.keyboard == true:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	past_vector = input
+	past_vector = input_vector

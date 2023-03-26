@@ -69,10 +69,13 @@ func _process(_delta):
 "
 
 [node name="References" type="Node"]
+process_mode = 3
 script = SubResource("GDScript_rl4av")
 
 [node name="Dialog_Forest" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("2_l730u")
 
 [node name="State" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("3_n1ga7")
