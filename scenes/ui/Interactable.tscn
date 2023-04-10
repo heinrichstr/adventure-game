@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://ddq6jf5y5p2tc"]
+[gd_scene load_steps=20 format=3 uid="uid://ddq6jf5y5p2tc"]
 
 [ext_resource type="Script" path="res://scenes/ui/Interactable.gd" id="1_kqlb6"]
 [ext_resource type="Texture2D" uid="uid://cx172jctsms4x" path="res://assets/sprites/ui/interact-cloud.png" id="1_ymgpv"]
 [ext_resource type="Texture2D" uid="uid://5kwpy1njxyni" path="res://assets/sprites/ui/action-btns.png" id="3_r4moi"]
+[ext_resource type="PackedScene" uid="uid://bqpaitkewaik8" path="res://scenes/ui/InteractionPrompt.tscn" id="4_tupns"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71nn6"]
 atlas = ExtResource("1_ymgpv")
@@ -164,5 +165,7 @@ libraries = {
 [node name="InteractBtn" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_y5lb1")
+
+[node name="InteractionPrompt" parent="." instance=ExtResource("4_tupns")]
 
 [connection signal="animation_finished" from="Cloud/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

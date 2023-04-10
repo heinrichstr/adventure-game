@@ -20,7 +20,6 @@ func get_input_vector(eventType, event):
 	#handle joystick detection
 	if eventType == "button":
 		joystickInput = false
-		prints("button input detected")
 	elif eventType == "stick":
 		var down = Input.get_action_strength("gamepad_down")
 		var up = Input.get_action_strength("gamepad_up")
@@ -28,7 +27,6 @@ func get_input_vector(eventType, event):
 		var right = Input.get_action_strength("gamepad_right")
 		
 		if down > 0.5 or up > 0.5 or left > 0.5 or right > 0.5:
-			prints('joypad event and strength over deadzone', up, down, left, right)
 			joystickInput = true
 	
 	#handle setting movement vector based on above detection

@@ -30,6 +30,8 @@ func _ready():
 			actionRefs.push_back(References.objectActions[actions.keys()[actionIndex]])
 		actionIndex += 1
 	prints('actionsList', actionRefs)
+	
+	$Interactable.object = self
 
 
 func _unhandled_input(event):

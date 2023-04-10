@@ -1,5 +1,7 @@
 extends Node2D
 
+var object
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,4 +31,4 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func load_menu(actions):
-	prints('laod menu', actions)
+	$InteractionPrompt.show_menu(actions)
