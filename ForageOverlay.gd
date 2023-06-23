@@ -5,18 +5,49 @@ var brushed_count = 0
 var plant_count
 var overlay_forage_key
 var overlay_forage_target
+var velocity = Vector2(0,0)
+var active = false
+var joystickInput = false
+var input_vector_temp
 
 func _ready():
 	References.forageOverlay = self
 
 
+func _unhandled_input(event):
+	if active == true:
+		if Actions.player_input(event) == "motion":
+			var down = Input.get_action_strength("gamepad_down")
+			var up = Input.get_action_strength("gamepad_up")
+			var left = Input.get_action_strength("gamepad_left")
+			var right = Input.get_action_strength("gamepad_right")
+			
+			if down > 0.5 or up > 0.5 or left > 0.5 or right > 0.5:
+				joystickInput = true
+				
+			if joystickInput == true:
+				input_vector_temp = Input.get_vector("gamepad_left","gamepad_right","gamepad_up","gamepad_down")
+			else:
+				input_vector_temp = Vector2.ZERO
+		
+			input_vector_temp = input_vector_temp.normalized()*50
+			velocity = input_vector_temp
+
+
+func _physics_process(delta):
+	if active == true:
+		get_viewport().warp_mouse(get_viewport().get_mouse_position() + velocity)
+
+
 func show_overlay(forage_key, forage_target): 
+	print("FORAGING")
 	#handles moving the forage screen in and setting up the screen
 	
 	#prints("received key", forage_key, "for target", forage_target)
 	overlay_forage_key = forage_key
 	overlay_forage_target = forage_target
 	Actions.playerInput = false
+	active = true
 	$BackgroundColor.modulate = Color(0,0,0,1)
 	$TargetPlant.reset()
 	load_forage(forage_key)

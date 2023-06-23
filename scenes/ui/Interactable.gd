@@ -1,12 +1,12 @@
 extends Node2D
 
 var object
-
+var openState = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$InteractionPrompt.interactableNode = self
 	$'./InteractBtn'.hide()
-	close_interact("prompt")
 	$Cloud/AnimationPlayer.play("closed")
 
 
@@ -32,3 +32,15 @@ func _on_animation_player_animation_finished(anim_name):
 
 func load_menu(actions):
 	$InteractionPrompt.show_menu(actions)
+	$InteractBtn.frame = 1
+	openState = true
+
+
+func close_menu():
+	$InteractionPrompt.close_menu()
+	$InteractBtn.frame = 0
+	openState = false
+
+
+func get_active_btn():
+	return($InteractionPrompt.get_active_btn())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ddq6jf5y5p2tc"]
+[gd_scene load_steps=21 format=3 uid="uid://ddq6jf5y5p2tc"]
 
 [ext_resource type="Script" path="res://scenes/ui/Interactable.gd" id="1_kqlb6"]
 [ext_resource type="Texture2D" uid="uid://cx172jctsms4x" path="res://assets/sprites/ui/interact-cloud.png" id="1_ymgpv"]
@@ -130,7 +130,11 @@ _data = {
 atlas = ExtResource("3_r4moi")
 region = Rect2(0, 0, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_goy02"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_glujf"]
+atlas = ExtResource("3_r4moi")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipfh7"]
 atlas = ExtResource("3_r4moi")
 region = Rect2(10, 0, 10, 10)
 
@@ -141,7 +145,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_2tfoi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_goy02")
+"texture": SubResource("AtlasTexture_glujf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipfh7")
 }],
 "loop": true,
 "name": &"default",
@@ -153,7 +160,7 @@ script = ExtResource("1_kqlb6")
 
 [node name="Cloud" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dp7m8")
-frame = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cloud"]
 autoplay = "closed"

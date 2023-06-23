@@ -1,14 +1,19 @@
 extends Node2D
 
 #Variables that config the object
-@export var actions = {
-	"forage": true,
-	"talk": true,
-	"interact": true
-}
+
+@export var actions = [
+	{
+		"desc": "Forage",
+		"signal_call": func(): _start_forage()
+	},
+	{
+		"desc": "Talk",
+		"signal_call": func(): _start_dialog()
+	}
+]
 
 @export var description:String
-
 @export var forage_key:String
 @export var forage_target:String
 @export var item_desc_key:String
@@ -25,26 +30,40 @@ signal object_menu_toggle(toggleState, objectMenu, fromNode)
 
 func _ready():
 	var actionIndex = 0
-	for action in actions.values():
-		if action == true:
-			actionRefs.push_back(References.objectActions[actions.keys()[actionIndex]])
-		actionIndex += 1
-	prints('actionsList', actionRefs)
 	
 	$Interactable.object = self
 
 
 func _unhandled_input(event):
 #Grab button inputs. Make sure it is a button press. Pass that button press onwards to the function that handles is
-	if event is InputEventJoypadButton:
-		if interactable:
-			if Input.is_action_just_pressed("input"):
-				_interact()
+	if interactable:
+		if Actions.player_input(event) == "input":
+			_interact("input")
+		elif Actions.player_input(event) == "cancel":
+			_interact("cancel")
 
 
-func _interact():
-	Actions.toggle_player_input()
-	$Interactable.load_menu(actions)
+func _interact(inputType):
+	if inputType == "input":
+		if $Interactable.openState == false:
+			Actions.toggle_player_input()
+			$Interactable.load_menu(actions)
+	elif inputType == "cancel":
+		if $Interactable.openState == true:
+			Actions.toggle_player_input()
+			$Interactable.close_menu()
+
+
+func _start_forage():
+	print("start forage")
+	var interactable = false
+	$Interactable.close_interact("PROMPT")
+	Actions._on_forage($Interactable,forage_key, forage_target)
+	#References.emit_signal("forage", self, forage_key, forage_target )
+
+
+func _start_dialog():
+	print("start dialog")
 
 
 func _on_area_2d_area_entered(area):

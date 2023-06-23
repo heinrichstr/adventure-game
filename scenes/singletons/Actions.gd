@@ -22,6 +22,21 @@ func toggle_player_input():
 	playerInput = not playerInput
 
 
+func player_input(event):
+	if event is InputEventJoypadButton:
+		if Input.is_action_just_pressed("input"):
+			return("input")
+		elif Input.is_action_just_pressed("cancel"):
+			return("cancel")
+	elif event is InputEventKey:
+		if Input.is_action_just_pressed("input"):
+			return("input")
+		elif Input.is_action_just_pressed("cancel"):
+			return("cancel")
+	elif event is InputEventJoypadMotion:
+		return("motion")
+
+
 func _on_object_menu_toggle(toggleState, object_menu, from_node): #Object node emit
 #called when user clicks on an object
 #shows or hides the menu
@@ -44,12 +59,12 @@ func _on_examine(object_menu_btn): #References node emit from object menu click
 		References.dialog.start_dialog(object_menu_btn.object_node.description, 0)
 
 
-func _on_forage(object_menu_btn, forage_key, forage_target): #References node emit from object menu click
-	if (playerInput == true && worldInput == true):
-		#prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description, forage_key)
-		object_menu_btn.object_node.toggleState = !object_menu_btn.object_node.toggleState
-		object_menu_btn.get_parent().hide_menu()
-		References.forageOverlay.show_overlay(forage_key, forage_target)
+func _on_forage(object_interactable, forage_key, forage_target): #References node emit from object menu click
+	#prints(object_menu_btn.buttonType, " | ", object_menu_btn.object_node.description, forage_key)
+	#object_menu_btn.object_node.toggleState = !object_menu_btn.object_node.toggleState
+	#object_menu_btn.get_parent().hide_menu()
+	object_interactable.close_menu()
+	References.forageOverlay.show_overlay(forage_key, forage_target)
 	
 
 
