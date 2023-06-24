@@ -10,54 +10,64 @@ var active = false
 var joystickInput = false
 var input_vector_temp
 
+var inputCounter
+var totalBarrierCount
+var forageBarrier = preload("res://scenes/forage/forage_barrier.tscn")
+
 func _ready():
 	References.forageOverlay = self
 
-
-func _unhandled_input(event):
-	if active == true:
-		if Actions.player_input(event) == "motion":
-			var down = Input.get_action_strength("gamepad_down")
-			var up = Input.get_action_strength("gamepad_up")
-			var left = Input.get_action_strength("gamepad_left")
-			var right = Input.get_action_strength("gamepad_right")
-			
-			if down > 0.5 or up > 0.5 or left > 0.5 or right > 0.5:
-				joystickInput = true
-				
-			if joystickInput == true:
-				input_vector_temp = Input.get_vector("gamepad_left","gamepad_right","gamepad_up","gamepad_down")
-			else:
-				input_vector_temp = Vector2.ZERO
-		
-			input_vector_temp = input_vector_temp.normalized()*50
-			velocity = input_vector_temp
-
-
-func _physics_process(delta):
-	if active == true:
-		get_viewport().warp_mouse(get_viewport().get_mouse_position() + velocity)
-
-
-func show_overlay(forage_key, forage_target): 
-	print("FORAGING")
-	#handles moving the forage screen in and setting up the screen
-	
-	#prints("received key", forage_key, "for target", forage_target)
+func show_overlay(forage_key, forage_target):
+	print("FORAGING", forage_key, forage_target)
+	#prepare anim and data
 	overlay_forage_key = forage_key
 	overlay_forage_target = forage_target
 	Actions.playerInput = false
 	active = true
 	$BackgroundColor.modulate = Color(0,0,0,1)
 	$TargetPlant.reset()
-	load_forage(forage_key)
+	
+	#reset state
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	totalBarrierCount = rng.randi_range(6, 10)
+	inputCounter = 0
+	
+	#load target plant
+	
+	#load forage barriers
+	var barrierCounter = 1
+	for barrier in totalBarrierCount:
+		var barrierInstance = forageBarrier.instantiate()
+		
+		if barrierCounter % 2 == 1:
+			barrierInstance.left = true
+		else:
+			barrierInstance.left = false
+		barrierCounter += 1
+		
+		barrierInstance.forage_loc = forage_key
+		barrierInstance.order = barrierCounter
+		
+		$Forage.add_child(barrierInstance)
+	
+	#set forage barrier modulation
+	var childCounter = 0
+	var maxChildren = $Forage.get_child_count()
+	for child in $Forage.get_children():
+		#modulate all but the front two
+		if childCounter - maxChildren >= -2:
+			pass
+		else:
+			child.modulate = Color(.5, .5, .5, 1)
+		
+		childCounter += 1
+	
+	#pull up overlay screen
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
 	tw.tween_property(self, "position", Vector2(0,0), .5)
 	tw.tween_property(self, "modulate", Color(1, 1, 1, 1), .5)
 	await tw.finished
-	var btn_tw = create_tween().set_parallel().set_trans(1).set_ease(1)
-	btn_tw.tween_property($TextureButton, "modulate", Color(1, 1, 1, 1), .25)
-	await btn_tw.finished
 	Actions.playerInput = true
 	Actions.worldInput = false
 
@@ -70,13 +80,10 @@ func hide_overlay():
 	tw.tween_property(self, "position", Vector2(0,1100), .5)
 	tw.tween_property(self, "modulate", Color(0, 0, 0, 1), .5)
 	tw.tween_property($TextureButton, "modulate", Color(1, 1, 1, 0), .25)
-	brushed_count = 0
-	plant_count = 0
 	$ForageEndScreen.fade_out()
 	
 	await tw.finished
 	
-	Input.set_custom_mouse_cursor(References.default_cursor)
 	Actions.playerInput = true
 	Actions.worldInput = true
 	for n in $Forage.get_children():
@@ -109,6 +116,9 @@ func handle_plant_state_update():
 		$TargetPlant.set_active()
 		$TargetPlant.modulate = Color(1,1,1,1)
 
+
+func _unhandled_input(event):
+	pass
 
 func finish_game():
 	print("game finish")

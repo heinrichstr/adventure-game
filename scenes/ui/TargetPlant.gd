@@ -15,22 +15,23 @@ func _ready():
 
 func _unhandled_input(event):
 	#handles animation and logic when clicked and allowed to be clicked
-	if event.is_action_pressed('click') && clickable:
-		if clickBuffer: #prevents firing a click too soon on forage screen
-			if clickerCount == 0:
-				#launch picked modal
-				print("PICKED")
-				clickable = false
-				emit_signal("picked_herb", self)
+	if event.is_action_pressed('click') or event.is_action_pressed('input'):
+		if clickable:
+			if clickBuffer: #prevents firing a click too soon on forage screen
+				if clickerCount == 0:
+					#launch picked modal
+					print("PICKED")
+					clickable = false
+					emit_signal("picked_herb", self)
+					
+					#tween the remote transform to make the sprite follow the path
+					var tw = create_tween().set_parallel().set_trans(0).set_ease(0)
+					tw.tween_property($"../Path2D/PathFollow2D/RemoteTransform2D", "scale", Vector2(0, 0), 2)
+					tw.tween_property($"../Path2D/PathFollow2D", 'progress_ratio', 1, 2)
+					tw.tween_property(self, 'z_index', 100, 1).set_delay(0.8)
 				
-				#tween the remote transform to make the sprite follow the path
-				var tw = create_tween().set_parallel().set_trans(0).set_ease(0)
-				tw.tween_property($"../Path2D/PathFollow2D/RemoteTransform2D", "scale", Vector2(0, 0), 2)
-				tw.tween_property($"../Path2D/PathFollow2D", 'progress_ratio', 1, 2)
-				tw.tween_property(self, 'z_index', 100, 1).set_delay(0.8)
-			
-			play_click_anim()
-			clickerCount -= 1
+				play_click_anim()
+				clickerCount -= 1
 		else:
 			clickBuffer = true
 

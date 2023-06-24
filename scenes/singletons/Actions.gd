@@ -24,15 +24,25 @@ func toggle_player_input():
 
 func player_input(event):
 	if event is InputEventJoypadButton:
+		#TODO: set key icons to joypad
 		if Input.is_action_just_pressed("input"):
 			return("input")
 		elif Input.is_action_just_pressed("cancel"):
 			return("cancel")
+		elif Input.is_action_just_pressed("bumper_left"):
+			return("bumper_left")
+		elif Input.is_action_just_pressed("bumper_left"):
+			return("bumper_right")
 	elif event is InputEventKey:
+		#TODO: set key icons to keyboard input
 		if Input.is_action_just_pressed("input"):
 			return("input")
 		elif Input.is_action_just_pressed("cancel"):
 			return("cancel")
+		elif Input.is_action_just_pressed("bumper_left"):
+			return("bumper_left")
+		elif Input.is_action_just_pressed("bumper_left"):
+			return("bumper_right")
 	elif event is InputEventJoypadMotion:
 		return("motion")
 

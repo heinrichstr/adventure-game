@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://2nfxglub58al"]
+
+[ext_resource type="Script" path="res://ForageBarrier.gd" id="1_vsewg"]
+[ext_resource type="Shader" path="res://scenes/forage/meadow-1.gdshader" id="2_5y7md"]
+[ext_resource type="Texture2D" uid="uid://c53m4d1sih32w" path="res://assets/sprites/forage/meadow/meadow-forage-barriers.png" id="2_tkd62"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34mex"]
+resource_local_to_scene = true
+shader = ExtResource("2_5y7md")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6q6"]
+atlas = ExtResource("2_tkd62")
+region = Rect2(0, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qg73"]
+atlas = ExtResource("2_tkd62")
+region = Rect2(450, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6sl5"]
+atlas = ExtResource("2_tkd62")
+region = Rect2(900, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g16iy"]
+atlas = ExtResource("2_tkd62")
+region = Rect2(1350, 0, 450, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o648e"]
+atlas = ExtResource("2_tkd62")
+region = Rect2(1800, 0, 450, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pygqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qg73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6sl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g16iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o648e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ForageBarrier" type="Node2D"]
+script = ExtResource("1_vsewg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_34mex")
+position = Vector2(536, -80)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_pygqr")
+centered = false
