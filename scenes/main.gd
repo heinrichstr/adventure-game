@@ -7,6 +7,7 @@ func _ready():
 	References.game_node = self
 	$AudioStreamPlayer.playing = true
 	Input.set_custom_mouse_cursor(References.default_cursor)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	#DisplayServer.window_set_size(Vector2i(1240, 1080))
 
@@ -15,15 +16,8 @@ func _on_menu_btn_pressed():
 	if $MainMenu.shown:
 		$MainMenu.hideMenu()
 	else:
-		$MainMenu.showMenu()
-
-func _physics_process(delta):
-	#Hide cursor when moving
-	
-	if References.State.keyboard == false:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	elif References.State.keyboard == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		$MainMenu.showMenu()
 
 
 func _unhandled_input(event):

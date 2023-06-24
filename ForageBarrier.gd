@@ -24,6 +24,7 @@ func _ready():
 	$AnimatedSprite2D.material.set_shader_parameter("maxStrength", .05)
 	prints("barrier set at pos ", $AnimatedSprite2D.position.x, " with index of ", spriteIndex, " and left equals ", left)
 
+
 func push_barrier():
 	if left:
 		$AnimatedSprite2D.offset = Vector2(-200, 50)

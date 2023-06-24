@@ -25,12 +25,13 @@ func showMenu():
 	get_tree().paused = true
 	$Menu.show()
 	shown = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn.grab_focus()
 
 
 func hideMenu():
 	#hide menu and trigger settings to save to user config, unpause game
-	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	if settingsShown:
 		hide_settings()
 	

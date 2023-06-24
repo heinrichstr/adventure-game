@@ -9,6 +9,7 @@ var velocity = Vector2(0,0)
 var active = false
 var joystickInput = false
 var input_vector_temp
+var leftActive = false
 
 var inputCounter
 var totalBarrierCount
@@ -91,7 +92,7 @@ func hide_overlay():
 		n.queue_free()
 
 
-func load_forage(forage_key:String):
+func load_forage(forage_key:String): #OLD
 	#loads in which forage overlay to use
 	#TODO also load in the herb sprite and set the target plant to that herb
 	
@@ -102,9 +103,6 @@ func load_forage(forage_key:String):
 	plant_count = $Forage.get_child(0).get_child_count()
 	$TargetPlant.texture = load(References.forage_targets[overlay_forage_target])
 	$ForageEndScreen/VBoxContainer/Sprite2D.texture = load(References.forage_targets[overlay_forage_target])
-
-
-func handle_plant_state_update():
 	#Called via signal by Actions
 	#Slowly reveals the herb and background
 	
@@ -118,7 +116,17 @@ func handle_plant_state_update():
 
 
 func _unhandled_input(event):
-	pass
+	if Actions.player_input(event) == "bumper_right":
+		if leftActive == false:
+			inputCounter += 1
+			#check if over the total count
+			#if not over, loop through the Forage nodes and grab the current active on that side
+				#push over that Forage node
+				#set leftActive to the opposite side to prepare for the next input
+				#emit signal for buttons to reread state
+	elif Actions.player_input(event) == "bumper_left":
+		if leftActive == true:
+			pass
 
 func finish_game():
 	print("game finish")
