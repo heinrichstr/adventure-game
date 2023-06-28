@@ -6,7 +6,7 @@ var openState = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$InteractionPrompt.interactableNode = self
-	$'./InteractBtn'.hide()
+	$'./ButtonHintSprite'.hide()
 	$Cloud/AnimationPlayer.play("closed")
 
 
@@ -17,28 +17,26 @@ func open_interact(state):
 
 
 func close_interact(state):
-	$'./InteractBtn'.hide()
+	$'./ButtonHintSprite'.hide()
 	$Cloud/AnimationPlayer.play("close")
 
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "open":
 		$Cloud/AnimationPlayer.play("idle")
-		$'./InteractBtn'.show()
+		$'./ButtonHintSprite'.show()
 	elif anim_name == "close":
-		$'./InteractBtn'.hide()
+		$'./ButtonHintSprite'.hide()
 		hide()
 
 
 func load_menu(actions):
 	$InteractionPrompt.show_menu(actions)
-	$InteractBtn.frame = 1
 	openState = true
 
 
 func close_menu():
 	$InteractionPrompt.close_menu()
-	$InteractBtn.frame = 0
 	openState = false
 
 

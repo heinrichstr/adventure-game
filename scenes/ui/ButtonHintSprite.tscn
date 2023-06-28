@@ -1,0 +1,107 @@
+[gd_scene load_steps=17 format=3 uid="uid://bn0yjvx3taoug"]
+
+[ext_resource type="Texture2D" uid="uid://bs2lx607rkuft" path="res://assets/sprites/ui/buttons.png" id="1_smefl"]
+[ext_resource type="Script" path="res://scenes/ui/ButtonHintSprite.gd" id="2_x4mdx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw6ou"]
+atlas = ExtResource("1_smefl")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orwv5"]
+atlas = ExtResource("1_smefl")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6511e"]
+atlas = ExtResource("1_smefl")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omml4"]
+atlas = ExtResource("1_smefl")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3vj4"]
+atlas = ExtResource("1_smefl")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb50h"]
+atlas = ExtResource("1_smefl")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_814pa"]
+atlas = ExtResource("1_smefl")
+region = Rect2(120, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4lh2"]
+atlas = ExtResource("1_smefl")
+region = Rect2(140, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fjqv"]
+atlas = ExtResource("1_smefl")
+region = Rect2(160, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sigtn"]
+atlas = ExtResource("1_smefl")
+region = Rect2(180, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0p4q"]
+atlas = ExtResource("1_smefl")
+region = Rect2(200, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q04g"]
+atlas = ExtResource("1_smefl")
+region = Rect2(220, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jn0h"]
+atlas = ExtResource("1_smefl")
+region = Rect2(240, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7ct4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw6ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orwv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6511e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omml4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3vj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb50h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_814pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4lh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fjqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sigtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0p4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q04g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jn0h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ButtonHintSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_p7ct4")
+script = ExtResource("2_x4mdx")

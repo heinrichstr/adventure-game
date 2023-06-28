@@ -34,6 +34,14 @@ func show_overlay(forage_key, forage_target):
 	totalBarrierCount = rng.randi_range(6, 10)
 	inputCounter = 0
 	
+	#Handle the first input button
+	if totalBarrierCount % 2 == 0:
+		leftActive = true
+	else: 
+		leftActive = false
+		
+	update_icons()
+	
 	#load target plant
 	
 	#load forage barriers
@@ -42,14 +50,14 @@ func show_overlay(forage_key, forage_target):
 		var barrierInstance = forageBarrier.instantiate()
 		
 		if barrierCounter % 2 == 1:
-			barrierInstance.left = true
-		else:
 			barrierInstance.left = false
-		barrierCounter += 1
+		else:
+			barrierInstance.left = true
 		
 		barrierInstance.forage_loc = forage_key
-		barrierInstance.order = barrierCounter
+		barrierInstance.forageOrder = barrierCounter
 		
+		barrierCounter += 1
 		$Forage.add_child(barrierInstance)
 	
 	#set forage barrier modulation
@@ -116,17 +124,43 @@ func load_forage(forage_key:String): #OLD
 
 
 func _unhandled_input(event):
-	if Actions.player_input(event) == "bumper_right":
-		if leftActive == false:
-			inputCounter += 1
-			#check if over the total count
-			#if not over, loop through the Forage nodes and grab the current active on that side
-				#push over that Forage node
-				#set leftActive to the opposite side to prepare for the next input
-				#emit signal for buttons to reread state
-	elif Actions.player_input(event) == "bumper_left":
-		if leftActive == true:
-			pass
+	if active:
+		if Actions.player_input(event) == "bumper_right":
+			if leftActive == false:
+				inputCounter += 1
+				if inputCounter < totalBarrierCount:
+					for forage in $Forage.get_children():
+						if forage.forageOrder == totalBarrierCount - (inputCounter - 1):
+							forage.push_barrier()
+					leftActive = true
+					update_icons()
+				else:
+					start_target_plant_game()
+		elif Actions.player_input(event) == "bumper_left":
+			if leftActive == true:
+				inputCounter += 1
+				if inputCounter < totalBarrierCount:
+					for forage in $Forage.get_children():
+						if forage.forageOrder == totalBarrierCount - (inputCounter - 1):
+							forage.push_barrier()
+					leftActive = false
+					update_icons()
+				else:
+					start_target_plant_game()
+
+
+func start_target_plant_game():
+	hide_overlay()
+
+
+func update_icons():
+	if leftActive:
+		$ButtonHintSpriteLeft.show()
+		$ButtonHintSpriteRight.hide()
+	elif leftActive == false:
+		$ButtonHintSpriteLeft.hide()
+		$ButtonHintSpriteRight.show()
+
 
 func finish_game():
 	print("game finish")

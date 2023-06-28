@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqmxihyc4i8r1"]
+[gd_scene load_steps=13 format=3 uid="uid://dqmxihyc4i8r1"]
 
 [ext_resource type="Script" path="res://ForageOverlay.gd" id="1_wrkff"]
 [ext_resource type="Texture2D" uid="uid://bfdy6pa6entqd" path="res://assets/sprites/ui/forage-background.png" id="2_f70pk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/ui/TargetPlant.gd" id="6_jmavr"]
 [ext_resource type="FontFile" uid="uid://dlcwuyt2vucmr" path="res://assets/fonts/alagard.ttf" id="9_pp8bk"]
 [ext_resource type="PackedScene" uid="uid://b5s11tx1ey63o" path="res://scenes/ui/ForageEndScreen.tscn" id="9_ubg6t"]
+[ext_resource type="PackedScene" uid="uid://bn0yjvx3taoug" path="res://scenes/ui/ButtonHintSprite.tscn" id="10_s62ug"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j1htv"]
 shader = ExtResource("4_ovmsm")
@@ -87,8 +88,20 @@ offset_top = 48.0
 offset_right = 704.0
 offset_bottom = 89.0
 theme_override_colors/font_color = Color(0.823529, 1, 0.607843, 0.803922)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_pp8bk")
 theme_override_font_sizes/font_size = 40
 text = "Forage for your potion ingredients!"
+
+[node name="ButtonHintSpriteLeft" parent="." instance=ExtResource("10_s62ug")]
+position = Vector2(440, 160)
+scale = Vector2(5, 5)
+actionType = "forage_left"
+
+[node name="ButtonHintSpriteRight" parent="." instance=ExtResource("10_s62ug")]
+position = Vector2(1480, 160)
+scale = Vector2(5, 5)
+actionType = "forage_right"
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

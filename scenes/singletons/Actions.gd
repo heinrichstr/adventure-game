@@ -4,8 +4,14 @@ extends Node2D
 var playerInput = true #can players provide inputs to the game?
 var worldInput = true
 
+signal update_icons()
+
 func _ready():
 	pass # Replace with function body.
+
+
+func update_icons_signal():
+	emit_signal("update_icons")
 
 
 func _process(_delta):
@@ -31,7 +37,7 @@ func player_input(event):
 			return("cancel")
 		elif Input.is_action_just_pressed("bumper_left"):
 			return("bumper_left")
-		elif Input.is_action_just_pressed("bumper_left"):
+		elif Input.is_action_just_pressed("bumper_right"):
 			return("bumper_right")
 	elif event is InputEventKey:
 		#TODO: set key icons to keyboard input
@@ -41,7 +47,7 @@ func player_input(event):
 			return("cancel")
 		elif Input.is_action_just_pressed("bumper_left"):
 			return("bumper_left")
-		elif Input.is_action_just_pressed("bumper_left"):
+		elif Input.is_action_just_pressed("bumper_right"):
 			return("bumper_right")
 	elif event is InputEventJoypadMotion:
 		return("motion")

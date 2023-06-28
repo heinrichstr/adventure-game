@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://ddq6jf5y5p2tc"]
+[gd_scene load_steps=17 format=3 uid="uid://ddq6jf5y5p2tc"]
 
 [ext_resource type="Script" path="res://scenes/ui/Interactable.gd" id="1_kqlb6"]
 [ext_resource type="Texture2D" uid="uid://cx172jctsms4x" path="res://assets/sprites/ui/interact-cloud.png" id="1_ymgpv"]
-[ext_resource type="Texture2D" uid="uid://5kwpy1njxyni" path="res://assets/sprites/ui/action-btns.png" id="3_r4moi"]
 [ext_resource type="PackedScene" uid="uid://bqpaitkewaik8" path="res://scenes/ui/InteractionPrompt.tscn" id="4_tupns"]
+[ext_resource type="PackedScene" uid="uid://bn0yjvx3taoug" path="res://scenes/ui/ButtonHintSprite.tscn" id="6_8ytv4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71nn6"]
 atlas = ExtResource("1_ymgpv")
@@ -126,41 +126,12 @@ _data = {
 "open": SubResource("Animation_u4sjx")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tfoi"]
-atlas = ExtResource("3_r4moi")
-region = Rect2(0, 0, 10, 10)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_glujf"]
-atlas = ExtResource("3_r4moi")
-region = Rect2(20, 0, 10, 10)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ipfh7"]
-atlas = ExtResource("3_r4moi")
-region = Rect2(10, 0, 10, 10)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y5lb1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2tfoi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_glujf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ipfh7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Interactable" type="Node2D"]
 script = ExtResource("1_kqlb6")
 
 [node name="Cloud" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dp7m8")
-frame = 4
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cloud"]
 autoplay = "closed"
@@ -169,9 +140,10 @@ libraries = {
 "": SubResource("AnimationLibrary_qx56f")
 }
 
-[node name="InteractBtn" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
-sprite_frames = SubResource("SpriteFrames_y5lb1")
+[node name="ButtonHintSprite" parent="." instance=ExtResource("6_8ytv4")]
+position = Vector2(-3.27826e-07, -3)
+scale = Vector2(0.6, 0.6)
+actionType = "input"
 
 [node name="InteractionPrompt" parent="." instance=ExtResource("4_tupns")]
 

@@ -3,7 +3,7 @@ extends Node2D
 var left = true
 var spriteIndex = 0
 var forage_loc
-var order = 0
+var forageOrder = 0
 
 func _ready():
 	load_sprite_by_loc(forage_loc)
@@ -12,7 +12,7 @@ func _ready():
 	rng.randomize()
 	spriteIndex = rng.randi_range(0, 5)
 	$AnimatedSprite2D.frame = spriteIndex
-	position.y = order * -10
+	position.y = forageOrder * -10
 	
 	if left:
 		$AnimatedSprite2D.position.x = -250 + (10 * spriteIndex)
@@ -22,16 +22,17 @@ func _ready():
 	
 	$AnimatedSprite2D.material.set_shader_parameter("offset", $AnimatedSprite2D.position.x/200)
 	$AnimatedSprite2D.material.set_shader_parameter("maxStrength", .05)
-	prints("barrier set at pos ", $AnimatedSprite2D.position.x, " with index of ", spriteIndex, " and left equals ", left)
 
 
 func push_barrier():
 	if left:
-		$AnimatedSprite2D.offset = Vector2(-200, 50)
+		$AnimatedSprite2D.position = Vector2($AnimatedSprite2D.position.x - 200,$AnimatedSprite2D.position.y + 400)
+		$AnimatedSprite2D.rotation = -PI/12
 	else:
-		$AnimatedSprite2D.offset = Vector2(200, 50)
+		$AnimatedSprite2D.position = Vector2($AnimatedSprite2D.position.x + 200,$AnimatedSprite2D.position.y + 400)
+		$AnimatedSprite2D.rotation = PI/12
 	
-	$AnimatedSprite2D.rotation = 90
+	
 	$AnimatedSprite2D.material.set_shader_parameter("maxStrength", .005)
 
 

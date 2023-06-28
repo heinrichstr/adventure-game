@@ -7,8 +7,10 @@ var dialog
 var forageOverlay
 @onready var State = $State
 
-var game_node
-var main_node
+var game_node 
+var main_node 
+
+var joyPadInputDetection
 
 var hand_cursor = preload("res://assets/sprites/ui/glove-cursor.png")
 var default_cursor = preload("res://assets/sprites/ui/pointer-cursor.png")
@@ -57,6 +59,5 @@ func _ready():
 	connect("forage", Actions._on_forage)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func updateJoypadState():
+	joyPadInputDetection = !joyPadInputDetection

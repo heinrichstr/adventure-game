@@ -16,6 +16,9 @@ var forageOverlay
 var game_node
 var main_node
 
+
+var joyPadInputDetection
+
 var hand_cursor = preload(\"res://assets/sprites/ui/glove-cursor.png\")
 var default_cursor = preload(\"res://assets/sprites/ui/pointer-cursor.png\")
 
@@ -61,11 +64,6 @@ var forage_targets = {
 func _ready():
 	connect(\"examine\", Actions._on_examine)
 	connect(\"forage\", Actions._on_forage)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 "
 
 [node name="References" type="Node"]
