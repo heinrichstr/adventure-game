@@ -56,7 +56,7 @@ func _interact(inputType):
 
 func _start_forage():
 	print("start forage")
-	var interactable = false
+	interactable = false
 	$Interactable.close_interact("PROMPT")
 	Actions._on_forage($Interactable,forage_key, forage_target)
 	#References.emit_signal("forage", self, forage_key, forage_target )

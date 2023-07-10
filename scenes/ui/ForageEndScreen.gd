@@ -11,6 +11,7 @@ func fade_in():
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
 	tw.tween_property(self, "modulate", Color(1,1,1,1), 0.5)
 	tw.tween_property(self, "position", Vector2(position.x, 540), 0.5)
+	$VBoxContainer/TextureButton.grab_focus()
 
 
 func fade_out():

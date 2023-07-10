@@ -1,30 +1,32 @@
 extends Node2D
 #Container that loads in the forage game
 
-var brushed_count = 0
 var plant_count
 var overlay_forage_key
 var overlay_forage_target
 var velocity = Vector2(0,0)
 var active = false
+var targetActive = false
 var joystickInput = false
 var input_vector_temp
 var leftActive = false
 
 var inputCounter
 var totalBarrierCount
+var targetPlantInputCounter
 var forageBarrier = preload("res://scenes/forage/forage_barrier.tscn")
 
 func _ready():
 	References.forageOverlay = self
 
 func show_overlay(forage_key, forage_target):
-	print("FORAGING", forage_key, forage_target)
+	#Debug print("FORAGING", forage_key, forage_target)
 	#prepare anim and data
 	overlay_forage_key = forage_key
 	overlay_forage_target = forage_target
 	Actions.playerInput = false
 	active = true
+	targetActive = false
 	$BackgroundColor.modulate = Color(0,0,0,1)
 	$TargetPlant.reset()
 	
@@ -43,6 +45,7 @@ func show_overlay(forage_key, forage_target):
 	update_icons()
 	
 	#load target plant
+	load_forage(forage_key)
 	
 	#load forage barriers
 	var barrierCounter = 1
@@ -83,6 +86,8 @@ func show_overlay(forage_key, forage_target):
 
 func hide_overlay():
 	#hides and resets the overlay, including unloading the forage items
+	active = false
+	targetActive = false
 	
 	Actions.playerInput = false
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
@@ -100,27 +105,17 @@ func hide_overlay():
 		n.queue_free()
 
 
-func load_forage(forage_key:String): #OLD
-	#loads in which forage overlay to use
-	#TODO also load in the herb sprite and set the target plant to that herb
+func load_forage(forage_key:String):
+	#loads forage target
 	
-	var instancePath = References.forages[forage_key]
-	var forageInstance = load(instancePath)
-	var forage = forageInstance.instantiate()
-	$Forage.add_child(forage)
-	plant_count = $Forage.get_child(0).get_child_count()
 	$TargetPlant.texture = load(References.forage_targets[overlay_forage_target])
 	$ForageEndScreen/VBoxContainer/Sprite2D.texture = load(References.forage_targets[overlay_forage_target])
-	#Called via signal by Actions
-	#Slowly reveals the herb and background
-	
-	if brushed_count <= plant_count:
-		var colorBalance = float(brushed_count)/float(plant_count)
-		$BackgroundColor.modulate = Color(colorBalance,colorBalance,colorBalance,1)
-		$TargetPlant.modulate = Color(colorBalance*.5,colorBalance*.5,colorBalance*.5,colorBalance)
-	if brushed_count == plant_count:
-		$TargetPlant.set_active()
-		$TargetPlant.modulate = Color(1,1,1,1)
+
+
+func calculate_forage_state():
+	var colorBalance = float(inputCounter -1)/float(totalBarrierCount)
+	$BackgroundColor.modulate = Color(colorBalance,colorBalance,colorBalance,1)
+	$TargetPlant.modulate = Color(colorBalance*.5,colorBalance*.5,colorBalance*.5,colorBalance)
 
 
 func _unhandled_input(event):
@@ -129,28 +124,55 @@ func _unhandled_input(event):
 			if leftActive == false:
 				inputCounter += 1
 				if inputCounter < totalBarrierCount:
-					for forage in $Forage.get_children():
-						if forage.forageOrder == totalBarrierCount - (inputCounter - 1):
-							forage.push_barrier()
+					push_over_forage()
 					leftActive = true
 					update_icons()
+					calculate_forage_state()
 				else:
+					push_over_forage()
+					calculate_forage_state()
 					start_target_plant_game()
 		elif Actions.player_input(event) == "bumper_left":
 			if leftActive == true:
 				inputCounter += 1
 				if inputCounter < totalBarrierCount:
-					for forage in $Forage.get_children():
-						if forage.forageOrder == totalBarrierCount - (inputCounter - 1):
-							forage.push_barrier()
+					push_over_forage()
 					leftActive = false
 					update_icons()
+					calculate_forage_state()
 				else:
+					push_over_forage()
+					calculate_forage_state()
 					start_target_plant_game()
+	elif targetActive:
+		if Actions.player_input(event) == "input":
+			print("pull")
+			targetPlantInputCounter += 1
+			
+			if targetPlantInputCounter > 5:
+				finish_game()
+			else:
+				$TargetPlant.play_click_anim()
+
+
+func push_over_forage():
+	for forage in $Forage.get_children():
+		if forage.forageOrder == totalBarrierCount - (inputCounter - 1):
+			forage.push_barrier()
 
 
 func start_target_plant_game():
-	hide_overlay()
+	$BackgroundColor.modulate = Color(1,1,1,1)
+	$TargetPlant.modulate = Color(1,1,1,1)
+	$ButtonHintSpriteLeft.hide()
+	$ButtonHintSpriteRight.hide()
+	$TargetPlant.set_active()
+	#show new input button
+	
+	active = false
+	targetActive = true
+	targetPlantInputCounter = 0
+	print('game on bitches')
 
 
 func update_icons():
