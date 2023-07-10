@@ -27,6 +27,7 @@ func show_overlay(forage_key, forage_target):
 	Actions.playerInput = false
 	active = true
 	targetActive = false
+	$ButtonHintSpriteCenter.hide()
 	$BackgroundColor.modulate = Color(0,0,0,1)
 	$TargetPlant.reset()
 	
@@ -166,6 +167,7 @@ func start_target_plant_game():
 	$TargetPlant.modulate = Color(1,1,1,1)
 	$ButtonHintSpriteLeft.hide()
 	$ButtonHintSpriteRight.hide()
+	$ButtonHintSpriteCenter.show()
 	$TargetPlant.set_active()
 	#show new input button
 	
@@ -186,6 +188,7 @@ func update_icons():
 
 func finish_game():
 	print("game finish")
+	$ButtonHintSpriteCenter.hide()
 	$ForageEndScreen.fade_in()
 	#Show herb picked UI
 		#include shiny sprite

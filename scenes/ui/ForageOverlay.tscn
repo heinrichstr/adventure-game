@@ -51,6 +51,7 @@ scale = Vector2(6, 6)
 script = ExtResource("6_jmavr")
 
 [node name="TextureButton" type="TextureButton" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 offset_left = 1832.0
 offset_top = 40.0
@@ -103,5 +104,10 @@ actionType = "forage_left"
 position = Vector2(1480, 160)
 scale = Vector2(5, 5)
 actionType = "forage_right"
+
+[node name="ButtonHintSpriteCenter" parent="." instance=ExtResource("10_s62ug")]
+position = Vector2(960, 160)
+scale = Vector2(5, 5)
+actionType = "input"
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
