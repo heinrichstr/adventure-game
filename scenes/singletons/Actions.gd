@@ -103,3 +103,8 @@ func _on_forage_add_to_inventory(forage_target, _from_node):
 	References.forageOverlay.hide_overlay()
 	References.get_node("State").inventory_state.herb_bag.contents.push_back(forage_target)
 	#add to inventory
+
+
+func _on_space_switcher(to_space_string_id):
+	prints("move to space", to_space_string_id)
+	References.spaceSwitcher_node.replaceScene(to_space_string_id)

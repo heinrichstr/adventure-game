@@ -4,14 +4,31 @@ extends Node2D
 
 @export var load_scene:PackedScene
 
+var scene_ids = [
+	{
+		"id": "meadow-1",
+		"scenepath": "res://scenes/world/meadow/SpaceMeadow1.tscn"
+	},
+	{
+		"id": "home",
+		"scenepath": "res://scenes/world/meadow/Home.tscn"
+	}
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	References.spaceSwitcher_node = self
+	replaceScene("home")
 
 
-func replaceScene(scenePath):
-	var sceneLoader = load(scenePath)
+func replaceScene(sceneId):
+	#search for id, get scene path for that id
+	var scenepath
+	for scene in scene_ids:
+		if scene.id == sceneId:
+			scenepath = scene.scenepath
+	
+	var sceneLoader = load(scenepath)
 	load_scene = sceneLoader
 	
 	var children = get_children()

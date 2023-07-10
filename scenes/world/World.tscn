@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgned7um6siwo"]
 
-[ext_resource type="PackedScene" uid="uid://dygmssoe8luh" path="res://scenes/world/Space.tscn" id="1_k8i0t"]
+[ext_resource type="PackedScene" uid="uid://ciloknned6u85" path="res://scenes/world/Switcher.tscn" id="1_bcrni"]
 [ext_resource type="PackedScene" uid="uid://doewqwkpp1fq4" path="res://scenes/ui/DialogPlayer.tscn" id="5_wq3pd"]
 [ext_resource type="PackedScene" uid="uid://dqmxihyc4i8r1" path="res://scenes/ui/ForageOverlay.tscn" id="6_t1m1v"]
 
 [node name="World" type="Node2D"]
 
-[node name="Space" parent="." instance=ExtResource("1_k8i0t")]
+[node name="Switcher" parent="." instance=ExtResource("1_bcrni")]
 
 [node name="DialogPlayer" parent="." instance=ExtResource("5_wq3pd")]
 

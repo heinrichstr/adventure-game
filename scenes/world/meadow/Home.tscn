@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm8q4lmlme0l2"]
+
+[ext_resource type="Script" path="res://scenes/world/Space.gd" id="1_5j8wu"]
+[ext_resource type="Texture2D" uid="uid://d2pk05yt35tsn" path="res://assets/sprites/world/meadow/mock meadow.png" id="2_e7ojc"]
+[ext_resource type="PackedScene" uid="uid://c60vk3bg00fie" path="res://scenes/player/Player.tscn" id="3_2y8hf"]
+[ext_resource type="PackedScene" uid="uid://b7ubtcjmkxlmn" path="res://scenes/world/meadow/Grass1.tscn" id="4_jbf13"]
+[ext_resource type="Shader" uid="uid://db6qbo3862lrc" path="res://scenes/world/meadow/world-meadow-grass-wind.tres" id="5_c67bu"]
+[ext_resource type="PackedScene" uid="uid://ce5olblq6vav5" path="res://scenes/objects/Object.tscn" id="6_v22st"]
+[ext_resource type="PackedScene" uid="uid://mrutm8q2goev" path="res://scenes/world/ScreenSwitchTrigger.tscn" id="7_bbrnv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ujr"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mr7rv"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[node name="Space" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_5j8wu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("2_e7ojc")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(960, 540)
+shape = SubResource("RectangleShape2D_gtvg3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(320, 544, 520, 488, 712, 392, 840, 336, 1200, 304, 1461.55, 383.919, 1488, 392, 1440, 504, 1240, 744, 1040, 792, 752, 792, 384, 704)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-24, 208, 280, 240, 440, 360, 352, 416, 104, 472, 104, 648, 224, 712, 304, 856, 512, 952, 544, 1120, -120, 1144)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1272, 1096, 1176, 944, 1448, 744, 1648, 400, 1768, 392, 1960, 400, 2024, 1160, 1280, 1168)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(680, -40, 744, 88, 880, 184, 1328, 200, 1536, 264, 1720, 256, 2008, 96, 1976, -56)
+
+[node name="Player" parent="." instance=ExtResource("3_2y8hf")]
+position = Vector2(1042, 918)
+scale = Vector2(2, 2)
+
+[node name="Grass5" parent="." instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_q7ujr")
+position = Vector2(968, 312)
+scale = Vector2(6, 6)
+
+[node name="Grass2" parent="." instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_mr7rv")
+position = Vector2(832, 336)
+scale = Vector2(6, 6)
+
+[node name="Object" parent="." instance=ExtResource("6_v22st")]
+position = Vector2(1119, 212)
+scale = Vector2(2, 2)
+forage_key = "meadow-1"
+forage_target = "rose"
+item_desc_key = "stick"
+
+[node name="ScreenSwitchTrigger" parent="." instance=ExtResource("7_bbrnv")]
+to_scene = "meadow-1"
+
+[node name="CollisionPolygon2D" parent="ScreenSwitchTrigger" index="0"]
+polygon = PackedVector2Array(533, 959, 673, 1013, 1083, 1025, 1178, 958, 1249, 1074, 546, 1072)
+
+[editable path="ScreenSwitchTrigger"]

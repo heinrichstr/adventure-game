@@ -15,6 +15,7 @@ var forageOverlay
 
 var game_node
 var main_node
+var spaceSwitcher_node
 
 
 var joyPadInputDetection
