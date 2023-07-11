@@ -1,27 +1,26 @@
-extends CenterContainer
+extends CanvasLayer
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+var ui_size
 
 func fade_in():
+	
+	ui_size = References.world.get_viewport().size
+	offset = Vector2((ui_size.x/2) - ($MarginContainer.size.x /2), ui_size.y + 100)
+	
 	show()
+	prints($MarginContainer.size)
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
-	tw.tween_property(self, "modulate", Color(1,1,1,1), 0.5)
-	tw.tween_property(self, "position", Vector2(position.x, 540), 0.5)
-	$VBoxContainer/TextureButton.grab_focus()
+	tw.tween_property($MarginContainer, "modulate", Color(1,1,1,1), 0.5)
+	tw.tween_property(self, "offset", Vector2((ui_size.x/2) - ($MarginContainer.size.x /2), (ui_size.y/2) - ($MarginContainer.size.y/2)), 0.5)
+	$MarginContainer/VBoxContainer/TextureButton.grab_focus()
 
 
 func fade_out():
-	var tw = create_tween().set_trans(1).set_ease(1)
-	tw.tween_property(self, "modulate", Color(1,1,1,0), .5)
+	#var tw = create_tween().set_trans(1).set_ease(1)
+	#tw.tween_property($MarginContainer, "modulate", Color(1,1,1,0), .5)
 	
-	await tw
-	
-	hide()
-	position.y = 500
+	#await tw.finished
+	self.hide()
 
 
 func _on_texture_button_pressed():

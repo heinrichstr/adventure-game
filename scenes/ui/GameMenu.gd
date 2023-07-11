@@ -1,4 +1,4 @@
-extends MarginContainer
+extends CanvasLayer
 
 
 func _on_menu_btn_pressed():

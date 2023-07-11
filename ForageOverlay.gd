@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 #Container that loads in the forage game
 
 var plant_count
@@ -78,8 +78,8 @@ func show_overlay(forage_key, forage_target):
 	
 	#pull up overlay screen
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
-	tw.tween_property(self, "position", Vector2(0,0), .5)
-	tw.tween_property(self, "modulate", Color(1, 1, 1, 1), .5)
+	tw.tween_property(self, "offset", Vector2(0,0), .5)
+	#tw.tween_property(self, "modulate", Color(1, 1, 1, 1), .5)
 	await tw.finished
 	Actions.playerInput = true
 	Actions.worldInput = false
@@ -92,12 +92,14 @@ func hide_overlay():
 	
 	Actions.playerInput = false
 	var tw = create_tween().set_parallel().set_trans(1).set_ease(1)
-	tw.tween_property(self, "position", Vector2(0,1100), .5)
-	tw.tween_property(self, "modulate", Color(0, 0, 0, 1), .5)
+	tw.tween_property(self, "offset", Vector2(0,1100), .5)
+	tw.tween_property($ForageEndScreen, "offset", Vector2($ForageEndScreen.offset.x,1100), .5)
 	tw.tween_property($TextureButton, "modulate", Color(1, 1, 1, 0), .25)
-	$ForageEndScreen.fade_out()
+	
 	
 	await tw.finished
+	
+	$ForageEndScreen.hide()
 	
 	Actions.playerInput = true
 	Actions.worldInput = true
@@ -110,7 +112,7 @@ func load_forage(forage_key:String):
 	#loads forage target
 	
 	$TargetPlant.texture = load(References.forage_targets[overlay_forage_target])
-	$ForageEndScreen/VBoxContainer/Sprite2D.texture = load(References.forage_targets[overlay_forage_target])
+	$ForageEndScreen/MarginContainer/VBoxContainer/Sprite2D.texture = load(References.forage_targets[overlay_forage_target])
 
 
 func calculate_forage_state():
@@ -188,6 +190,7 @@ func update_icons():
 
 func finish_game():
 	print("game finish")
+	targetActive = false
 	$ButtonHintSpriteCenter.hide()
 	$ForageEndScreen.fade_in()
 	#Show herb picked UI

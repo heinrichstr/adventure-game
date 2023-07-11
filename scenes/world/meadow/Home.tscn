@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://mrutm8q2goev" path="res://scenes/world/ScreenSwitchTrigger.tscn" id="7_bbrnv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
-size = Vector2(1920, 1080)
+size = Vector2(3170, 1789)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ujr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ons4f"]
 resource_local_to_scene = true
 shader = ExtResource("5_c67bu")
 shader_parameter/speed = 0.3
@@ -24,7 +24,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mr7rv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmfjr"]
 resource_local_to_scene = true
 shader = ExtResource("5_c67bu")
 shader_parameter/speed = 0.3
@@ -43,47 +43,60 @@ script = ExtResource("1_5j8wu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(6, 6)
+scale = Vector2(10, 10)
 texture = ExtResource("2_e7ojc")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(960, 540)
+position = Vector2(1585, 894.5)
 shape = SubResource("RectangleShape2D_gtvg3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(320, 544, 520, 488, 712, 392, 840, 336, 1200, 304, 1461.55, 383.919, 1488, 392, 1440, 504, 1240, 744, 1040, 792, 752, 792, 384, 704)
+position = Vector2(-449, -362)
+polygon = PackedVector2Array(320, 544, 520, 488, 712, 392, 840, 336, 1200, 304, 1472, 297, 1680, 363, 1440, 504, 1240, 744, 1040, 792, 752, 792, 384, 704)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-24, 208, 280, 240, 440, 360, 352, 416, 104, 472, 104, 648, 224, 712, 304, 856, 512, 952, 544, 1120, -120, 1144)
+position = Vector2(59, 684)
+polygon = PackedVector2Array(-46, -276, 252, -251, 545, -251, 716, -75, 134, 120, 149, 389, 360, 505, 409, 719, 727, 925, 782, 1128, -120, 1144)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(1272, 1096, 1176, 944, 1448, 744, 1648, 400, 1768, 392, 1960, 400, 2024, 1160, 1280, 1168)
+position = Vector2(901, 623)
+polygon = PackedVector2Array(1272, 1096, 1176, 944, 1448, 744, 1648, 400, 1913, 45, 2309, 111, 2267, 1172, 1280, 1168)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(680, -40, 744, 88, 880, 184, 1328, 200, 1536, 264, 1720, 256, 2008, 96, 1976, -56)
+position = Vector2(1216, 57)
+polygon = PackedVector2Array(-59, -71, 51, 115, 413, 276, 922, 272, 1288, 399, 1632, 378, 1988, 168, 1976, -56)
 
 [node name="Player" parent="." instance=ExtResource("3_2y8hf")]
-position = Vector2(1042, 918)
+position = Vector2(1693, 1552)
 scale = Vector2(2, 2)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_right = 3100
+limit_bottom = 1700
+limit_smoothed = true
+position_smoothing_enabled = true
+
 [node name="Grass5" parent="." instance=ExtResource("4_jbf13")]
-material = SubResource("ShaderMaterial_q7ujr")
-position = Vector2(968, 312)
+material = SubResource("ShaderMaterial_ons4f")
+position = Vector2(1180, 626)
 scale = Vector2(6, 6)
 
 [node name="Grass2" parent="." instance=ExtResource("4_jbf13")]
-material = SubResource("ShaderMaterial_mr7rv")
-position = Vector2(832, 336)
+material = SubResource("ShaderMaterial_dmfjr")
+position = Vector2(1809, 522)
 scale = Vector2(6, 6)
 
 [node name="Object" parent="." instance=ExtResource("6_v22st")]
-position = Vector2(1119, 212)
+position = Vector2(2545, 740)
 scale = Vector2(2, 2)
 forage_key = "meadow-1"
 forage_target = "rose"
@@ -93,6 +106,7 @@ item_desc_key = "stick"
 to_scene = "meadow-1"
 
 [node name="CollisionPolygon2D" parent="ScreenSwitchTrigger" index="0"]
-polygon = PackedVector2Array(533, 959, 673, 1013, 1083, 1025, 1178, 958, 1249, 1074, 546, 1072)
+position = Vector2(331, 712)
+polygon = PackedVector2Array(529, 918, 1608, 922, 1737, 1081, 546, 1072)
 
 [editable path="ScreenSwitchTrigger"]

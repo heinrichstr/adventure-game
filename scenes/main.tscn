@@ -16,8 +16,9 @@ process_mode = 1
 [node name="MainMenu" parent="." instance=ExtResource("3_lnqxo")]
 
 [node name="GameMenu" parent="." instance=ExtResource("4_0jip5")]
-offset_left = -120.0
-offset_bottom = 60.0
+offset = Vector2(1800, 0)
+transform = Transform2D(1, 0, 0, 1, 1800, 0)
+follow_viewport_enabled = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 #use showMenu() and hideMenu() to control whether the menu is active on screens
 	#default menu state is set in _ready()
 

@@ -22,19 +22,11 @@ region = Rect2(100, 0, 100, 40)
 
 [sub_resource type="Theme" id="Theme_og1en"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 script = ExtResource("1_yll8h")
 
 [node name="Menu" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -195,10 +187,8 @@ clip_text = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource("6_t7llc")]
 visible = false
-layout_mode = 1
 
 [node name="Credits" parent="." instance=ExtResource("7_d3t7w")]
-layout_mode = 1
 
 [connection signal="pressed" from="Menu/MarginContainer/MarginContainer/VBoxContainer/ResumeBtn" to="Menu" method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer/MarginContainer/VBoxContainer/SettingsBtn" to="Menu" method="_on_settings_btn_pressed"]
