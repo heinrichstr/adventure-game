@@ -22,18 +22,35 @@ func _ready():
 
 
 func replaceScene(sceneId):
-	#search for id, get scene path for that id
 	var scenepath
 	for scene in scene_ids:
 		if scene.id == sceneId:
 			scenepath = scene.scenepath
 	
-	var sceneLoader = load(scenepath)
-	load_scene = sceneLoader
-	
-	var children = get_children()
+	if scenepath:
+		var sceneLoader = load(scenepath)
+		
+		#darken and set no interact
+		Actions.toggle_player_input()
+		var tween = get_tree().create_tween()
+		tween.tween_property($ColorRect, "modulate", Color(0,0,0,1), .5).set_trans(Tween.TRANS_SINE)
+		await tween.finished
+		tween.kill()
+		
+		_handle_space_children(sceneLoader)
+		
+		#lighten and set interact
+		tween = get_tree().create_tween()
+		await tween.tween_property($ColorRect, "modulate", Color(0,0,0,0), .5).set_trans(Tween.TRANS_SINE)
+		await tween.finished
+		tween.kill()
+		Actions.toggle_player_input()
+
+
+func _handle_space_children(child_scene):
+	print("handling after initial tween")
+	var children = $SpaceContainer.get_children()
 	for child in children:
 		child.queue_free()
 	
-	var scene_to_add = load_scene.instantiate()
-	add_child(scene_to_add)
+	$SpaceContainer.call_deferred("add_child",child_scene.instantiate())

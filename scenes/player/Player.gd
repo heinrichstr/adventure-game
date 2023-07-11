@@ -8,6 +8,7 @@ var joystickInput = false
 
 func _ready():
 	$AnimationTree.get("parameters/playback").travel("idle-loop")
+	References.player = self
 
 
 #button var that is set when a button is pressed, or set to joystick when a joystick is > 0.5 strength
@@ -58,11 +59,11 @@ func animate_overlapping_grass():
 
 func _unhandled_input(event):
 	#Detect input and organize by input type (either button press on keyboard/dpad or joystick motion)
-	
-	if event is InputEventJoypadMotion :
-		get_input_vector("stick", event)
-	elif event is InputEventKey or event is InputEventJoypadButton:
-		get_input_vector("button", event)
+	if Actions.playerInput == true:
+		if event is InputEventJoypadMotion:
+			get_input_vector("stick", event)
+		elif event is InputEventKey or event is InputEventJoypadButton:
+			get_input_vector("button", event)
 
 
 func _physics_process(delta):
@@ -79,6 +80,7 @@ func _physics_process(delta):
 	#Move the player with animation based on input vector variable
 	update_anim_params(input_vector)
 	velocity = input_vector * speed
+	
 	move_and_slide()
 	
 	past_vector = input_vector

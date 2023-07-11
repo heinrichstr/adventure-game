@@ -16,12 +16,13 @@ func update_icons_signal():
 
 func _process(_delta):
 	#used to "pause" player input globablly, set by toggle_player_input()
-	if playerInput == true:
-		References.player.set_process_unhandled_input(true)
-		References.player.set_physics_process(true)
-	elif playerInput == false:
-		References.player.set_process_unhandled_input(false)
-		References.player.set_physics_process(false)
+	if References.player:
+		if playerInput == true:
+			References.player.set_process_unhandled_input(true)
+			References.player.set_physics_process(true)
+		elif playerInput == false:
+			References.player.set_process_unhandled_input(false)
+			References.player.set_physics_process(false)
 
 
 func toggle_player_input():
