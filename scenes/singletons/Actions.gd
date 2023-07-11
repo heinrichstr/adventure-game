@@ -54,7 +54,7 @@ func player_input(event):
 		return("motion")
 
 
-func _on_object_menu_toggle(toggleState, object_menu, from_node): #Object node emit
+func _on_object_menu_toggle(toggleState, _object_menu, from_node): #Object node emit
 #called when user clicks on an object
 #shows or hides the menu
 	if References.dialog.in_progress == false:

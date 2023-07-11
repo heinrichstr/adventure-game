@@ -33,7 +33,7 @@ func replaceScene(sceneId):
 		#darken and set no interact
 		Actions.toggle_player_input()
 		var tween = get_tree().create_tween()
-		tween.tween_property($ColorRect, "modulate", Color(0,0,0,1), .5).set_trans(Tween.TRANS_SINE)
+		tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(0,0,0,1), .5).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		tween.kill()
 		
@@ -41,7 +41,7 @@ func replaceScene(sceneId):
 		
 		#lighten and set interact
 		tween = get_tree().create_tween()
-		await tween.tween_property($ColorRect, "modulate", Color(0,0,0,0), .5).set_trans(Tween.TRANS_SINE)
+		tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(0,0,0,0), .5).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		tween.kill()
 		Actions.toggle_player_input()

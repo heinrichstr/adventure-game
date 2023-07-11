@@ -36,6 +36,6 @@ func push_barrier():
 	$AnimatedSprite2D.material.set_shader_parameter("maxStrength", .005)
 
 
-func load_sprite_by_loc(forage_loc):
-	prints("loading spite by loc", forage_loc)
+func load_sprite_by_loc(forage_location):
+	prints("loading spite by loc", forage_location)
 	#TODO: Load forage sprite by location
