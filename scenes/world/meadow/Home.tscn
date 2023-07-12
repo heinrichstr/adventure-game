@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bm8q4lmlme0l2"]
+[gd_scene load_steps=20 format=3 uid="uid://bm8q4lmlme0l2"]
 
 [ext_resource type="Script" path="res://scenes/world/Space.gd" id="1_5j8wu"]
 [ext_resource type="Texture2D" uid="uid://d2pk05yt35tsn" path="res://assets/sprites/world/meadow/mock meadow.png" id="2_e7ojc"]
@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
 size = Vector2(3170, 1789)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ons4f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5ltx"]
 resource_local_to_scene = true
 shader = ExtResource("5_c67bu")
 shader_parameter/speed = 0.3
@@ -24,7 +24,124 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmfjr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ew2iu"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxc8s"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpmwq"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snio1"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xg4ll"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7cjv"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ge5qn"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xo58h"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oywbn"]
+resource_local_to_scene = true
+shader = ExtResource("5_c67bu")
+shader_parameter/speed = 0.3
+shader_parameter/minStrength = 0.03
+shader_parameter/maxStrength = 0.05
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 3.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tbvo"]
 resource_local_to_scene = true
 shader = ExtResource("5_c67bu")
 shader_parameter/speed = 0.3
@@ -72,8 +189,73 @@ polygon = PackedVector2Array(1272, 1096, 1176, 944, 1448, 744, 1648, 400, 1913, 
 position = Vector2(1216, 57)
 polygon = PackedVector2Array(-59, -71, 51, 115, 413, 276, 922, 272, 1288, 399, 1632, 378, 1988, 168, 1976, -56)
 
+[node name="GrassContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Grass5" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_h5ltx")
+position = Vector2(1180, 626)
+scale = Vector2(6, 6)
+
+[node name="Grass7" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_ew2iu")
+position = Vector2(1326, 590)
+scale = Vector2(6, 6)
+
+[node name="Grass2" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_cxc8s")
+position = Vector2(1811, 522)
+scale = Vector2(6, 6)
+frame = 1
+
+[node name="Grass8" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_tpmwq")
+position = Vector2(1901, 563)
+scale = Vector2(6, 6)
+frame = 1
+
+[node name="Grass10" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_snio1")
+position = Vector2(1985, 499)
+scale = Vector2(6, 6)
+
+[node name="Grass11" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_xg4ll")
+position = Vector2(2078, 536)
+scale = Vector2(6, 6)
+frame = 2
+
+[node name="Grass12" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_c7cjv")
+position = Vector2(2186, 578)
+scale = Vector2(6, 6)
+
+[node name="Grass9" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_ge5qn")
+position = Vector2(8, 0)
+scale = Vector2(6, 6)
+frame = 1
+
+[node name="Grass3" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_xo58h")
+position = Vector2(1701, 552)
+scale = Vector2(6, 6)
+frame = 2
+
+[node name="Grass4" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_oywbn")
+position = Vector2(1235, 564)
+scale = Vector2(6, 6)
+frame = 2
+
+[node name="Grass6" parent="GrassContainer" instance=ExtResource("4_jbf13")]
+material = SubResource("ShaderMaterial_5tbvo")
+position = Vector2(1066, 661)
+scale = Vector2(6, 6)
+frame = 2
+
 [node name="Player" parent="." instance=ExtResource("3_2y8hf")]
-position = Vector2(1693, 1552)
+position = Vector2(1799, 1505)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -85,16 +267,6 @@ limit_bottom = 1700
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Grass5" parent="." instance=ExtResource("4_jbf13")]
-material = SubResource("ShaderMaterial_ons4f")
-position = Vector2(1180, 626)
-scale = Vector2(6, 6)
-
-[node name="Grass2" parent="." instance=ExtResource("4_jbf13")]
-material = SubResource("ShaderMaterial_dmfjr")
-position = Vector2(1809, 522)
-scale = Vector2(6, 6)
-
 [node name="Object" parent="." instance=ExtResource("6_v22st")]
 position = Vector2(2545, 740)
 scale = Vector2(2, 2)
@@ -104,6 +276,7 @@ item_desc_key = "stick"
 
 [node name="ScreenSwitchTrigger" parent="." instance=ExtResource("7_bbrnv")]
 to_scene = "meadow-1"
+spawn_loc = "northwest"
 
 [node name="CollisionPolygon2D" parent="ScreenSwitchTrigger" index="0"]
 position = Vector2(331, 712)

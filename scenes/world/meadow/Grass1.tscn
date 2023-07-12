@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7ubtcjmkxlmn"]
+[gd_scene load_steps=13 format=3 uid="uid://b7ubtcjmkxlmn"]
 
 [ext_resource type="Shader" uid="uid://db6qbo3862lrc" path="res://scenes/world/meadow/world-meadow-grass-wind.tres" id="1_ismow"]
-[ext_resource type="Texture2D" uid="uid://r6wj3dv2kafs" path="res://assets/sprites/world/meadow/grass-tuft.png" id="2_21602"]
+[ext_resource type="Texture2D" uid="uid://bttp3fm764dug" path="res://assets/sprites/world/meadow/grass.png" id="2_oju3m"]
 [ext_resource type="Script" path="res://scenes/world/meadow/Grass1.gd" id="2_v74lr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ac4qp"]
@@ -16,6 +16,35 @@ shader_parameter/detail = 3.0
 shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6uor"]
+atlas = ExtResource("2_oju3m")
+region = Rect2(0, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m02be"]
+atlas = ExtResource("2_oju3m")
+region = Rect2(60, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lykeo"]
+atlas = ExtResource("2_oju3m")
+region = Rect2(120, 0, 60, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cs7ig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6uor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m02be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lykeo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_0w52w"]
 resource_name = "push_left"
@@ -80,9 +109,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmqdh"]
 size = Vector2(32, 18)
 
-[node name="Grass1" type="Sprite2D" groups=["grass_walkable"]]
+[node name="Grass1" type="AnimatedSprite2D" groups=["grass_walkable"]]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_ac4qp")
-texture = ExtResource("2_21602")
+sprite_frames = SubResource("SpriteFrames_cs7ig")
 script = ExtResource("2_v74lr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -94,6 +124,5 @@ libraries = {
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1)
+position = Vector2(-7, 6)
 shape = SubResource("RectangleShape2D_lmqdh")
-metadata/_edit_lock_ = true

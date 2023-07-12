@@ -5,10 +5,38 @@ var input_vector:Vector2 = Vector2.ZERO
 var past_vector:Vector2
 var overlapping:Array
 var joystickInput = false
+var spawn_loc
+@export var spawns:Array = [
+	{
+		"location": "default",
+		"spawn_pos": Vector2(200, 200)
+	},
+	{
+		"location": "northwest",
+		"spawn_pos": Vector2(1020, 351)
+	},
+	{
+		"location": "south",
+		"spawn_pos": Vector2(1799, 1505)
+	}
+]
 
 func _ready():
 	$AnimationTree.get("parameters/playback").travel("idle-loop")
 	References.player = self
+
+
+func set_spawn_loc():
+	prints("Setting player position: ", spawn_loc, get_parent().spawn_loc)
+	
+	self.position == spawns[0].spawn_pos #set default in case there are no matches
+	
+	for spawn in spawns: #see if there is a spawn that matches spawn_loc
+		if spawn_loc == spawn.location:
+			self.position = spawn.spawn_pos
+			prints("spawn found: ", spawn.location, spawn.spawn_pos)
+	
+	prints("Result of spawn: ", self.position)
 
 
 #button var that is set when a button is pressed, or set to joystick when a joystick is > 0.5 strength

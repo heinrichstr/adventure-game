@@ -11,4 +11,3 @@
 [node name="DialogPlayer" parent="." instance=ExtResource("5_wq3pd")]
 
 [node name="ForageOverlay" parent="." instance=ExtResource("6_t1m1v")]
-position = Vector2(0, 1100)

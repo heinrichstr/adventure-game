@@ -18,10 +18,10 @@ var scene_ids = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	References.spaceSwitcher_node = self
-	replaceScene("home")
+	replaceScene("home", "northwest")
 
 
-func replaceScene(sceneId):
+func replaceScene(sceneId, spawn_loc):
 	var scenepath
 	for scene in scene_ids:
 		if scene.id == sceneId:
@@ -37,7 +37,7 @@ func replaceScene(sceneId):
 		await tween.finished
 		tween.kill()
 		
-		_handle_space_children(sceneLoader)
+		_handle_space_children(sceneLoader, spawn_loc)
 		
 		#lighten and set interact
 		tween = get_tree().create_tween()
@@ -47,10 +47,12 @@ func replaceScene(sceneId):
 		Actions.toggle_player_input()
 
 
-func _handle_space_children(child_scene):
-	print("handling after initial tween")
+func _handle_space_children(child_scene, spawn_loc):
 	var children = $SpaceContainer.get_children()
 	for child in children:
 		child.queue_free()
 	
-	$SpaceContainer.call_deferred("add_child",child_scene.instantiate())
+	var new_child = child_scene.instantiate()
+	new_child.spawn_loc = spawn_loc
+	
+	$SpaceContainer.call_deferred("add_child", new_child)

@@ -106,6 +106,6 @@ func _on_forage_add_to_inventory(forage_target, _from_node):
 	#add to inventory
 
 
-func _on_space_switcher(to_space_string_id):
-	prints("move to space", to_space_string_id)
-	References.spaceSwitcher_node.replaceScene(to_space_string_id)
+func _on_space_switcher(to_space_string_id, spawn_loc):
+	prints("move to space", to_space_string_id, spawn_loc)
+	References.spaceSwitcher_node.replaceScene(to_space_string_id, spawn_loc)

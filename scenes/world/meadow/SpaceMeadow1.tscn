@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtvg3"]
 size = Vector2(1920, 1080)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8tckr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abvla"]
 resource_local_to_scene = true
 shader = ExtResource("5_q1se1")
 shader_parameter/speed = 0.3
@@ -24,7 +24,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsb3a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mghh2"]
 resource_local_to_scene = true
 shader = ExtResource("5_q1se1")
 shader_parameter/speed = 0.3
@@ -37,7 +37,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fq4n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7qy2y"]
 resource_local_to_scene = true
 shader = ExtResource("5_q1se1")
 shader_parameter/speed = 0.3
@@ -50,7 +50,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fj8d2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2it4u"]
 resource_local_to_scene = true
 shader = ExtResource("5_q1se1")
 shader_parameter/speed = 0.3
@@ -63,7 +63,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7l8n6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_na1bj"]
 resource_local_to_scene = true
 shader = ExtResource("5_q1se1")
 shader_parameter/speed = 0.3
@@ -76,7 +76,7 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jno47"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_enfxf"]
 resource_local_to_scene = true
 shader = ExtResource("5_q1se1")
 shader_parameter/speed = 0.3
@@ -121,36 +121,46 @@ polygon = PackedVector2Array(1272, 1096, 1176, 944, 1448, 744, 1648, 400, 1768, 
 polygon = PackedVector2Array(680, -40, 744, 88, 880, 184, 1328, 200, 1536, 264, 1720, 256, 2008, 96, 1976, -56)
 
 [node name="Player" parent="." instance=ExtResource("3_xlyp5")]
-position = Vector2(680, 252)
+position = Vector2(512, 232)
 scale = Vector2(2, 2)
+spawns = [{
+"location": "default",
+"spawn_pos": Vector2(200, 200)
+}, {
+"location": "northwest",
+"spawn_pos": Vector2(512, 232)
+}, {
+"location": "south",
+"spawn_pos": Vector2(1799, 1505)
+}]
 
 [node name="Grass3" parent="." instance=ExtResource("4_pr337")]
-material = SubResource("ShaderMaterial_8tckr")
+material = SubResource("ShaderMaterial_abvla")
 position = Vector2(1197, 304)
 scale = Vector2(6, 6)
 
 [node name="Grass5" parent="." instance=ExtResource("4_pr337")]
-material = SubResource("ShaderMaterial_qsb3a")
+material = SubResource("ShaderMaterial_mghh2")
 position = Vector2(968, 312)
 scale = Vector2(6, 6)
 
 [node name="Grass4" parent="." instance=ExtResource("4_pr337")]
-material = SubResource("ShaderMaterial_4fq4n")
+material = SubResource("ShaderMaterial_7qy2y")
 position = Vector2(1056, 328)
 scale = Vector2(6, 6)
 
 [node name="Grass1" parent="." instance=ExtResource("4_pr337")]
-material = SubResource("ShaderMaterial_fj8d2")
+material = SubResource("ShaderMaterial_2it4u")
 position = Vector2(696, 360)
 scale = Vector2(6, 6)
 
 [node name="Grass2" parent="." instance=ExtResource("4_pr337")]
-material = SubResource("ShaderMaterial_7l8n6")
+material = SubResource("ShaderMaterial_na1bj")
 position = Vector2(832, 336)
 scale = Vector2(6, 6)
 
 [node name="Grass6" parent="." instance=ExtResource("4_pr337")]
-material = SubResource("ShaderMaterial_jno47")
+material = SubResource("ShaderMaterial_enfxf")
 position = Vector2(1304, 344)
 scale = Vector2(6, 6)
 
@@ -163,6 +173,7 @@ item_desc_key = "stick"
 
 [node name="ScreenSwitchTrigger" parent="." instance=ExtResource("7_11y4e")]
 to_scene = "home"
+spawn_loc = "south"
 
 [node name="CollisionPolygon2D" parent="ScreenSwitchTrigger" index="0"]
 polygon = PackedVector2Array(8, 200, 256, 216, 712, 48, 680, 0, 0, 16)
